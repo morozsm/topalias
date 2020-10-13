@@ -17,7 +17,7 @@ Linux bash alias generator
 ## Installation
 
 ```bash
-pip install topaz
+pip install --user topaz
 ```
 
 
