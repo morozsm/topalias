@@ -1,8 +1,8 @@
-# topaz
+# topalias
 
-[![Build Status](https://travis-ci.com/CSRedRat/topaz.svg?branch=master)](https://travis-ci.com/CSRedRat/topaz)
-[![Coverage](https://coveralls.io/repos/github/CSRedRat/topaz/badge.svg?branch=master)](https://coveralls.io/github/CSRedRat/topaz?branch=master)
-[![Python Version](https://img.shields.io/pypi/pyversions/topaz.svg)](https://pypi.org/project/topaz/)
+[![Build Status](https://travis-ci.com/CSRedRat/topalias.svg?branch=master)](https://travis-ci.com/CSRedRat/topalias)
+[![Coverage](https://coveralls.io/repos/github/CSRedRat/topalias/badge.svg?branch=master)](https://coveralls.io/github/CSRedRat/topalias?branch=master)
+[![Python Version](https://img.shields.io/pypi/pyversions/topalias.svg)](https://pypi.org/project/topalias/)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
 Linux bash alias generator
@@ -17,7 +17,7 @@ Linux bash alias generator
 ## Installation
 
 ```bash
-pip install topaz
+pip install topalias
 ```
 
 
@@ -26,12 +26,12 @@ pip install topaz
 Showcase how your project can be used:
 
 ```bash
-topaz -h
+topalias -h
 ```
 
 ## License
 
-[GPLv3](https://github.com/CSRedRat/topaz/blob/master/LICENSE)
+[GPLv3](https://github.com/CSRedRat/topalias/blob/master/LICENSE)
 
 
 ## Credits

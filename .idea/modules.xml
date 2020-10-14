@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/topaz.iml" filepath="$PROJECT_DIR$/.idea/topaz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../topalias/.idea/topalias.iml" filepath="$PROJECT_DIR$/../topalias/.idea/topalias.iml" />
     </modules>
   </component>
 </project>

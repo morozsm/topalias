@@ -1,4 +1,4 @@
-# http://editorconfig.org
+# http://editorconfig.org/#file-format-details
 
 root = true
 
@@ -9,6 +9,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 charset = utf-8
 end_of_line = lf
+
+[*.md]
+trim_trailing_whitespace = false
 
 [*.bat]
 indent_style = tab

@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use topaz in a project::
+To use topalias in a project::
 
-    import topaz
+    import topalias
