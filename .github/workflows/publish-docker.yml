@@ -31,6 +31,7 @@ jobs:
         image_name: ${{ env.GITHUB_REPOSITORY_SLUG_URL }}/topalias
 
   push-docker:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
