@@ -11,7 +11,7 @@ style = "https://raw.githubusercontent.com/wemake-services/wemake-python-stylegu
 name = "topalias"
 version = "0.1.0"
 description = "Linux bash alias generator"
-license = "GPLV3"
+license = "GPL-3.0-or-later"
 
 authors = []
 
