@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install topaz, run this command in your terminal:
+To install topalias, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install topaz
+    $ pip install --user topalias
 
-This is the preferred method to install topaz, as it will always install the most recent stable release.
+This is the preferred method to install topalias, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for topaz can be downloaded from the `Github repo`_.
+The sources for topalias can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/CSRedRat/topaz
+    $ git clone git://github.com/CSRedRat/topalias
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/CSRedRat/topaz/tarball/master
+    $ curl -OJL https://github.com/CSRedRat/topalias/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/CSRedRat/topaz
-.. _tarball: https://github.com/CSRedRat/topaz/tarball/master
+.. _Github repo: https://github.com/CSRedRat/topalias
+.. _tarball: https://github.com/CSRedRat/topalias/tarball/master

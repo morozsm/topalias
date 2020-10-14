@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=topaz
+set SPHINXPROJ=topalias
 
 if "%1" == "" goto help
 

@@ -1,4 +1,4 @@
-* topaz version:
+* topalias version:
 * Python version:
 * Operating System:
 
