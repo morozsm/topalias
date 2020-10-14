@@ -32,8 +32,8 @@ def test_content(response):
 def test_welcome(capsys, message, expected):
     """Test output to stdout"""
     topalias.welcome(message)
-    out = capsys.readouterr()
-    assert out == expected
+    out, err = capsys.readouterr()
+    assert out == expected, err == ''
 
 
 def test_command_line_interface():
