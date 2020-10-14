@@ -4,4 +4,4 @@
 
 def welcome(event):
     """Event message inside the program."""
-    print(f'topalias util {event}')
+    print(f"topalias util {event}")

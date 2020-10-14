@@ -3,5 +3,5 @@
 
 from topalias import topalias
 
-if __name__ == '__main__':
-    topalias.welcome('start')
+if __name__ == "__main__":
+    topalias.welcome("start")
