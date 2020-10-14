@@ -12,6 +12,8 @@ Click>=7.0
 pytest>=4.6.5
 pytest-runner>=5.1
 pytest-cov
+pylint
 tomlkit>=0.7.0
 requests
 beautifulsoup4
+poetry

@@ -42,11 +42,10 @@ jobs:
         export PATH="$(pwd)/.venv/bin:$PATH"
         make test
 
-    # Uncomment these lines if you wish to upload coverage to codecov:
-    # https://codecov.io/
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage.xml
 
   test:
