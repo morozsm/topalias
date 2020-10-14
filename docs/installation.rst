@@ -4,6 +4,7 @@
 Installation
 ============
 
+Requires: Python 3.8
 
 Stable release
 --------------

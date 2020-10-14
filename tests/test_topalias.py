@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Tests for `topalias` package."""
 
@@ -40,9 +39,9 @@ def test_welcome(capsys, message, expected):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
-    assert result.exit_code == 0
-    assert 'https://github.com/CSRedRat/topalias' in result.output
+    result_output = runner.invoke(cli.main)
+    assert result_output.exit_code == 0
+    assert 'https://github.com/CSRedRat/topalias' in result_output.output
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
