@@ -36,7 +36,7 @@ jobs:
         source "$HOME/.poetry/env"
         poetry config virtualenvs.in-project true
         poetry install
-        apt install python3-bs4
+        sudo apt install python3-bs4
 
     - name: Run checks
       run: |
