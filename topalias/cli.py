@@ -5,7 +5,7 @@ import click
 
 
 @click.command()
-def main():  # args=None
+def main() -> int:  # args=None
     """Console script for topalias."""
     click.echo(
         "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",

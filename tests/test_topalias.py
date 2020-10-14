@@ -32,7 +32,7 @@ def test_content(response):
         ("test", "topalias util test\n"),
     ],
 )
-def test_welcome(capsys, message, expected):
+def test_welcome(capsys, message: str, expected: str):
     """Test output to stdout"""
     topalias.welcome(message)
     out, err = capsys.readouterr()

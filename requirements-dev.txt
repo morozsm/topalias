@@ -13,6 +13,7 @@ pytest-cov
 pylint
 tomlkit>=0.7.0
 requests
-beautifulsoup4
+BeautifulSoup4
+bs4
 poetry
 black==20.8b1
