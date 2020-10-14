@@ -9,19 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Inject slug/short variables
+      uses: rlespinasse/github-slug-action@v2.x
     - uses: whoan/docker-build-with-cache-action@v5
       with:
         registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        image_name: ${{ github.repository }}/topalias
+        image_name: ${{ env.GITHUB_REPOSITORY_SLUG_URL }}/topalias
 
   docker-hub:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Inject slug/short variables
+      uses: rlespinasse/github-slug-action@v2.x
     - uses: whoan/docker-build-with-cache-action@v5
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        image_name: ${{ github.repository }}/topalias
+        image_name: ${{ env.GITHUB_REPOSITORY_SLUG_URL }}/topalias
