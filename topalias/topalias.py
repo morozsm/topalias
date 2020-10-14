@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Main function module. Not for executing, only library. Run project from __init__.py"""
 

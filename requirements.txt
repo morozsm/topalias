@@ -1,2 +1,2 @@
 setuptools>=50.3.0
-click>=7.1.2
+Click>=7.1.2
