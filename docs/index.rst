@@ -1,4 +1,7 @@
-Welcome to topaz's documentation!
+.. mdinclude:: ../README.md
+
+
+Welcome to topalias's documentation!
 ======================================
 
 .. toctree::
@@ -10,8 +13,10 @@ Welcome to topaz's documentation!
    usage
    modules
    contributing
-   authors
-   history
+
+  :caption: Changelog
+
+  pages/changelog.rst
 
 Indices and tables
 ==================

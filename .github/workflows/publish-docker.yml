@@ -5,15 +5,23 @@ on:
     tags: "*"
 
 jobs:
-  docker:
+  github-docker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: Publish to GitHub packages
-      uses: whoan/docker-build-with-cache-action@v2
+    - uses: whoan/docker-build-with-cache-action@v5
       with:
         registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+        image_name: ${{ github.repository }}/topalias
+
+  docker-hub:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         image_name: ${{ github.repository }}/topalias
