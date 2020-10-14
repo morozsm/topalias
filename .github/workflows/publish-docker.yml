@@ -17,8 +17,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         image_name: ${{ github.repository }}/topalias
     - name: Publish to Docker Hub
-- uses: whoan/docker-build-with-cache-action@v5
-  with:
-    username: CSRedRat
-    password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-    image_name: ${{ github.repository }}/topalias
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        image_name: ${{ github.repository }}/topalias
