@@ -8,7 +8,7 @@ import click
 def main():  # args=None
     """Console script for topalias."""
     click.echo(
-        "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias"
+        "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
     )
     return 0
 
