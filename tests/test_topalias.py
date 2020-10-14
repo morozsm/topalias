@@ -26,9 +26,12 @@ def test_content(response):
     assert "GitHub" in BeautifulSoup(response.content).title.string
 
 
-@pytest.mark.parametrize(("message", "expected"), [
-    ("test", "topalias util test\n"),
-])
+@pytest.mark.parametrize(
+    ("message", "expected"),
+    [
+        ("test", "topalias util test\n"),
+    ],
+)
 def test_welcome(capsys, message, expected):
     """Test output to stdout"""
     topalias.welcome(message)
