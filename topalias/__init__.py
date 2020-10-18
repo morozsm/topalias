@@ -3,6 +3,4 @@
 
 __author__ = "Sergey Chudakov"
 __email__ = "csredrat@gmail.com"
-__version__ = "1.0.0"
-
-from .topalias import *
+__version__ = "1.0.1"

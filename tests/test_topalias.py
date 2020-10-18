@@ -7,7 +7,7 @@ from click.testing import CliRunner
 from bs4 import BeautifulSoup
 import requests
 
-from topalias import topalias
+from topalias import aliascore
 from topalias import cli
 
 
@@ -34,7 +34,7 @@ def test_content(response):
 )
 def test_welcome(capsys, message: str, expected: str):
     """Test output to stdout"""
-    topalias.welcome(message)
+    aliascore.welcome(message)
     out, err = capsys.readouterr()
     assert out == expected, err == ""
 

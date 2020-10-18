@@ -33,7 +33,7 @@ jobs:
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
-        python-version: 3.x
+        python-version: 3.8
     - name: Install pep517
       run: >-
         python -m

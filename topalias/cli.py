@@ -5,7 +5,7 @@
 import sys
 import click
 
-import topalias
+import aliascore as core
 
 
 @click.group()
@@ -28,7 +28,7 @@ def main() -> int:  # args=None
 def print_history(min) -> int:  # args=None
     """Print bash history file."""
     click.echo(
-        topalias.print_history(min),
+        core.print_history(min),
     )
     return 0
 
