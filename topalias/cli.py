@@ -25,7 +25,7 @@ def main() -> int:  # args=None
 
 @cli.command(name="print")
 @click.option("--min", default=1, help="Will print alias not less than this.")
-def print_history(min) -> int:  # args=None
+def print_history(min) -> int:  # args=None, @click.pass_context
     """Print bash history file."""
     click.echo(
         core.print_history(min),

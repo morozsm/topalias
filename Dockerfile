@@ -25,6 +25,7 @@ FROM base AS runtime
 # Copy virtual env from python-deps stage
 COPY --from=python-deps /.venv /.venv
 ENV PATH="/.venv/bin:$PATH:/home/appuser/topalias"
+ENV PYTHONPATH /home/appuser/topalias
 
 # Create and switch to a new user
 RUN useradd --create-home appuser

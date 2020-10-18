@@ -7,7 +7,7 @@ import re
 from collections import defaultdict
 
 
-def top_command(command, top=20):
+def top_command(command: list, top=20) -> list:
     counts = defaultdict(int)
     for x in command:
         counts[x] += 1
@@ -64,10 +64,12 @@ def print_history(alias_lenght) -> None:
     filtered_alias_bank = filter_alias_lenght(alias_bank, alias_lenght)
     top_raw_list = top_command(filtered_alias_bank)
     print(top_raw_list)
-    for num, ranked_command in enumerate(top_raw_list, start=1):
+    for num, ranked_command in reversed(list(enumerate(top_raw_list, start=1))):
         gen_alias = "".join(r.findall(ranked_command[0]))
+        linux_add_alias = f"alias {gen_alias}=\'{ranked_command[0]}\' >> ~/.bash_aliases"
         print(
-            f"{num}. {ranked_command[0]} \nexecuted count: {ranked_command[1]}, suggestion: {gen_alias}"
+            f"{num}. {ranked_command[0]}\n"
+            f"executed count: {ranked_command[1]}, suggestion: {gen_alias}\n"
+            f"{linux_add_alias}"
         )
-
     print_stat(alias_bank, filtered_alias_bank)
