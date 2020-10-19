@@ -28,11 +28,11 @@ print(fileDir)
 filename = os.path.join(fileDir, "topalias\\data\\.bash_history")
 
 
-def filter_alias_lenght(raw_command_list: list, min_lenght: int) -> list:
+def filter_alias_length(raw_command_list: list, min_length: int) -> list:
     filtered_list = []
     for command in raw_command_list:
         gen_alias = "".join(r.findall(command))
-        if len(gen_alias) >= min_lenght:
+        if len(gen_alias) >= min_length:
             filtered_list.append(command)
         else:
             print(f"COMMAND_FILTERED: {command}")
@@ -46,11 +46,11 @@ def print_stat(raw_lines, filtered):
     filtered_count = unique_count - len(set(filtered))
     # gen_count = # TODO
     return print(
-        f"commands in history: {rows_count}, unique commands: {unique_count}, filtered by lenght: {filtered_count}"
+        f"commands in history: {rows_count}, unique commands: {unique_count}, filtered by length: {filtered_count}"
     )
 
 
-def print_history(alias_lenght) -> None:
+def print_history(alias_length) -> None:
     alias_bank = []
     with open(filename, "r") as f:
         for line in f:
@@ -61,7 +61,7 @@ def print_history(alias_lenght) -> None:
                 print("".join(r.findall(s)))
             # l.append(line.split('#')[0].split())
     # print(l)
-    filtered_alias_bank = filter_alias_lenght(alias_bank, alias_lenght)
+    filtered_alias_bank = filter_alias_length(alias_bank, alias_length)
     top_raw_list = top_command(filtered_alias_bank)
     print(top_raw_list)
     for num, ranked_command in reversed(list(enumerate(top_raw_list, start=1))):
