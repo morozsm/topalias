@@ -7,11 +7,45 @@ import re
 from collections import defaultdict
 
 
+PATHS = ['.', '~']
+
+
+def find_first(filename, paths):
+    for directory in paths:
+        full_path = os.path.join(directory, filename)
+        if os.path.isfile(full_path):
+            return full_path
+
+def find_history():
+    history_name = '.bash_history'
+    path = find_first(history_name, PATHS)
+    if path:
+        return path
+    else:
+        print("File {} not found in any of the directories".format(history_name))
+        fileDir = os.path.dirname(os.path.realpath("__file__"))
+        data_path = os.path.join(fileDir, "topalias\\data\\.bash_history")
+        return data_path
+
+def find_aliases():
+    aliases_name = '.bash_aliases'
+    path = find_first(aliases_name, PATHS)
+    if path:
+        return path
+    else:
+        print("File {} not found in any of the directories".format(aliases_name))
+
+
 def top_command(command: list, top=20) -> list:
     counts = defaultdict(int)
     for x in command:
         counts[x] += 1
     return sorted(counts.items(), reverse=True, key=lambda tup: tup[1])[:top]
+
+def top_alias():
+    print("Top used aliases: ")
+    print("For suggest new amazing short aliases run:\ntopalias h")
+    print("Print help:\ntopalias -h")
 
 
 r = re.compile(r"(?:(?<=\s)|^)(?:[a-z]|\d+)")
@@ -20,12 +54,6 @@ r = re.compile(r"(?:(?<=\s)|^)(?:[a-z]|\d+)")
 def welcome(event: str) -> None:
     """Event message inside the program."""
     print(f"console util {event}")
-
-
-fileDir = os.path.dirname(os.path.realpath("__file__"))
-print(fileDir)
-
-filename = os.path.join(fileDir, "topalias\\data\\.bash_history")
 
 
 def filter_alias_length(raw_command_list: list, min_length: int) -> list:
@@ -52,13 +80,13 @@ def print_stat(raw_lines, filtered):
 
 def print_history(alias_length) -> None:
     alias_bank = []
-    with open(filename, "r") as f:
+    with open(find_history(), "r") as f:
         for line in f:
-            print(str(line.startswith("#", 0, 1)) + " " + line)
+            #print(str(line.startswith("#", 0, 1)) + " " + line)
             if not line.startswith("#", 0, 1):
                 s = line.rstrip()
                 alias_bank.append(s)
-                print("".join(r.findall(s)))
+                #print("".join(r.findall(s)))
             # l.append(line.split('#')[0].split())
     # print(l)
     filtered_alias_bank = filter_alias_length(alias_bank, alias_length)
