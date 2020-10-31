@@ -6,4 +6,4 @@ import cli as cli
 
 if __name__ == "__main__":
     core.welcome("start as module: python -m topalias")
-    cli.main()
+    cli.cli()

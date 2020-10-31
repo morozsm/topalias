@@ -17,7 +17,11 @@ class AliasedGroup(click.Group):
         return super().get_command(ctx, cmd_name)
 
 
-@click.group(cls=AliasedGroup, context_settings=dict(help_option_names=["-h", "--help"]), invoke_without_command=True)
+@click.group(
+    cls=AliasedGroup,
+    context_settings=dict(help_option_names=["-h", "--help"]),
+    invoke_without_command=True,
+)
 @click.pass_context
 def cli(ctx) -> int:
     """Entrypoint function, group command"""
@@ -25,11 +29,14 @@ def cli(ctx) -> int:
         click.echo(
             "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
         )
-        if not core.find_aliases():
-            top_history()
-        else:
-            core.top_alias()
+        top_history()  # TODO: DEBUG, uncomment if below
+        # if not core.find_aliases():
+        #     top_history()
+        # else:
+        #     core.top_alias()
+        #     top_history(min=2)
     return 0
+
 
 @cli.command(name="history")
 @click.option("--min", default=1, help="Will print alias not less than this.")
@@ -39,6 +46,7 @@ def top_history(min) -> int:  # args=None, @click.pass_context
         core.print_history(min),
     )
     return 0
+
 
 ALIASES = {
     "h": top_history,
