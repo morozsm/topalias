@@ -5,6 +5,8 @@
 
 We use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
 
+topalias developed in PyCharm, Anaconda Python 3.8 distr. Package will run on Python 3.5-3.9.
+
 To install them you would need to run `install` command:
 
 ```bash
@@ -20,7 +22,7 @@ pip install -r requirements.txt
 To activate your `virtualenv` run `poetry shell`.
 
 
-## Local build
+## Local package build
 
 Install from sources:
 
