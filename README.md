@@ -20,20 +20,28 @@ Linux bash alias generator
 pip install topalias
 ```
 
+From source:
+```bash
+git clone https://github.com/CSRedRat/topalias
+python topalias/setup.py install
+```
 
 ## Example
 
 Showcase how your project can be used:
 
 ```bash
-topalias -h
+topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
+topalias -h # print help
+topalias history # analyze local bash history
+topalias h --min=2 # set minimal lenght for generated acronym filter, so that exclude some short command and find long, hard, usable command
 ```
+
+File path search order:
+- .bash_history in current . directory
+- .bash_history in home ~ directory
+- example development files in topalias/data
 
 ## License
 
 [GPLv3](https://github.com/CSRedRat/topalias/blob/master/LICENSE)
-
-
-## Credits
-
-This project was generated with [`wemake-python-package`](https://github.com/wemake-services/wemake-python-package). Current template version is: [73799f3de925b190fb257a97465148d6b6074a9c](https://github.com/wemake-services/wemake-python-package/tree/73799f3de925b190fb257a97465148d6b6074a9c). See what is [updated](https://github.com/wemake-services/wemake-python-package/compare/73799f3de925b190fb257a97465148d6b6074a9c...master) since then.

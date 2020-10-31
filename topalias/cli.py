@@ -5,7 +5,7 @@
 import sys
 import click
 
-import aliascore as core
+from topalias import aliascore as core
 
 
 class AliasedGroup(click.Group):
@@ -26,17 +26,24 @@ class AliasedGroup(click.Group):
 def cli(ctx) -> int:
     """Entrypoint function, group command"""
     if ctx.invoked_subcommand is None:
-        click.echo(
-            "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
-        )
-        top_history()  # TODO: DEBUG, uncomment if below
-        # if not core.find_aliases():
-        #     top_history()
-        # else:
-        #     core.top_alias()
-        #     top_history(min=2)
+        main()
     return 0
 
+@cli.command(
+    context_settings=dict(help_option_names=["-h", "--help"]),
+)
+def main() -> int:
+    """Print bash history file."""
+    click.echo(
+        "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
+    )
+    top_history()  # TODO: DEBUG, uncomment if below
+    # if not core.find_aliases():
+    #     top_history()
+    # else:
+    #     core.top_alias()
+    #     top_history(min=2)
+    return 0
 
 @cli.command(name="history")
 @click.option("--min", default=1, help="Will print alias not less than this.")

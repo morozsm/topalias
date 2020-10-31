@@ -11,8 +11,29 @@ To install them you would need to run `install` command:
 poetry install
 ```
 
+or:
+```bash
+pip install -r requirements-dev.txt
+pip install -r requirements.txt
+```
+
 To activate your `virtualenv` run `poetry shell`.
 
+
+## Local build
+
+Install from sources:
+
+```bash
+python setup.py install
+```
+
+Build wheel-package:
+
+```bash
+python setup.py sdist bdist_wheel
+#twine upload -r testpypi dist/* # upload package to pypi.org
+```
 
 ## One magic command
 
