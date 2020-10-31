@@ -29,6 +29,7 @@ def cli(ctx) -> int:
         main()
     return 0
 
+
 @cli.command(
     context_settings=dict(help_option_names=["-h", "--help"]),
 )
@@ -44,6 +45,7 @@ def main() -> int:
     #     core.top_alias()
     #     top_history(min=2)
     return 0
+
 
 @cli.command(name="history")
 @click.option("--min", default=1, help="Will print alias not less than this.")

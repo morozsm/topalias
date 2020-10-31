@@ -3,7 +3,6 @@
 
 from topalias import aliascore, cli
 
-
 if __name__ == "__main__":
     aliascore.welcome("start as module: python -m topalias")
     cli.cli()

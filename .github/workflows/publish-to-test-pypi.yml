@@ -1,4 +1,4 @@
-name: Publish Python 🐍 distributions 📦 to TestPyPI
+name: Publish to TestPyPI
 
 on: push
 
@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8 # TODO: update to 3.9
+        python-version: 3.9 # TODO: update to 3.9
     - name: Install pep517
       run: >-
         python -m
