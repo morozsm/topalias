@@ -31,6 +31,7 @@ python setup.py install
 Build wheel-package:
 
 ```bash
+pip install -U --user twine wheel setuptools
 python setup.py sdist bdist_wheel
 #twine upload -r testpypi dist/* # upload package to pypi.org
 ```
