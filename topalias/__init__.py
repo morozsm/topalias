@@ -3,6 +3,6 @@
 
 __author__ = "Sergey Chudakov"
 __email__ = "csredrat@gmail.com"
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 from topalias import *
