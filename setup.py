@@ -58,6 +58,6 @@ setup(
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/CSRedRat/topalias",
-    version="1.1.5",
+    version="1.1.6",
     zip_safe=False,
 )
