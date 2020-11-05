@@ -1,0 +1,24 @@
+{
+  "projectName": "topalias",
+  "projectOwner": "CSRedRat",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md, CONTRIBUTING.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "CSRedRat",
+      "name": "Sergey Chudakov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1287586?v=4",
+      "profile": "https://metin2wiki.ru/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
