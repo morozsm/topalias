@@ -1,22 +1,20 @@
 # How to contribute
 
+topalias developed in PyCharm, Anaconda with Python 3.8. Package will run on Python 3.5-3.9.
 
 ## Dependencies
 
-We use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
+```bash
+pip install -r requirements-dev.txt
+pip install -r requirements.txt
+```
 
-topalias developed in PyCharm, Anaconda Python 3.8 distr. Package will run on Python 3.5-3.9.
+You can use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
 
 To install them you would need to run `install` command:
 
 ```bash
 poetry install
-```
-
-or:
-```bash
-pip install -r requirements-dev.txt
-pip install -r requirements.txt
 ```
 
 To activate your `virtualenv` run `poetry shell`.
@@ -27,16 +25,17 @@ To activate your `virtualenv` run `poetry shell`.
 Install from sources:
 
 ```bash
-python setup.py install
+python3 setup.py install
 ```
 
 Build wheel-package:
 
 ```bash
 pip install -U --user twine wheel setuptools
-python setup.py sdist bdist_wheel
-#twine upload -r testpypi dist/* # upload package to pypi.org
+python3 setup.py sdist bdist_wheel
+#twine upload -r testpypi dist/* # upload package to test.pypi.org
 ```
+
 
 ## One magic command
 
@@ -188,3 +187,8 @@ $ git push
 $ git push --tags
 
 Travis will then deploy to PyPI if tests pass.
+
+## Add to contributors
+
+Comment on an issue or pull request with:
+@all-contributors please add @CSRedRat for code, infra, tests, ideas, maintenance, platform, mentoring and example ✨
