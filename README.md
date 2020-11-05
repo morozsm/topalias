@@ -34,7 +34,7 @@ Showcase how your project can be used:
 topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
 topalias -h # print help
 topalias history # analyze local bash history
-topalias h --min=2 # set minimal lenght for generated acronym filter, so that exclude some short command and find long, hard, usable command
+topalias h --min=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
 ```
 
 File path search order:
