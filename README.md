@@ -5,7 +5,7 @@
 [![Python Version](https://img.shields.io/pypi/pyversions/topalias.svg)](https://pypi.org/project/topalias/)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
-Linux bash alias generator
+[topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator, written on [Python](https://pypi.org/project/topalias/).
 
 
 ## Features
@@ -16,6 +16,7 @@ Linux bash alias generator
 
 ## Installation
 
+From [pypi.org repository](https://pypi.org/project/topalias/):
 ```bash
 pip3 install -U --user topalias
 ```
