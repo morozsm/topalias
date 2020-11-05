@@ -17,7 +17,7 @@ Linux bash alias generator
 ## Installation
 
 ```bash
-pip install -U --user topalias
+pip3 install -U --user topalias
 ```
 
 From source:

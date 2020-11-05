@@ -5,8 +5,8 @@ topalias developed in PyCharm, Anaconda with Python 3.8. Package will run on Pyt
 ## Dependencies
 
 ```bash
-pip install -r requirements-dev.txt
-pip install -r requirements.txt
+pip3 install -r requirements-dev.txt
+pip3 install -r requirements.txt
 ```
 
 You can use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
@@ -18,6 +18,21 @@ poetry install
 ```
 
 To activate your `virtualenv` run `poetry shell`.
+
+You can use [pipfile](https://github.com/pypa/pipfile) to manage the dependencies.
+
+To install them you would need to run `pipenv install` command:
+
+```bash
+pipenv install --dev
+```
+
+Setup pre-commit and pre-push hooks:
+
+```bash
+pipenv run pre-commit install -t pre-commit
+pipenv run pre-commit install -t pre-push
+```
 
 
 ## Local package build
@@ -31,7 +46,7 @@ python3 setup.py install
 Build wheel-package:
 
 ```bash
-pip install -U --user twine wheel setuptools
+pip3 install -U --user twine wheel setuptools
 python3 setup.py sdist bdist_wheel
 #twine upload -r testpypi dist/* # upload package to test.pypi.org
 ```
