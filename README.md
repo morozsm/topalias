@@ -23,7 +23,7 @@ pip install -U --user topalias
 From source:
 ```bash
 git clone https://github.com/CSRedRat/topalias
-python topalias/setup.py install
+python3 topalias/setup.py install
 ```
 
 ## Example
@@ -41,6 +41,17 @@ File path search order:
 - .bash_history in current . directory
 - .bash_history in home ~ directory
 - example development files in topalias/data
+
+Run as python module:
+```bash
+python3 -m topalias
+```
+
+Run as python script without install:
+```bash
+git clone https://github.com/CSRedRat/topalias
+python3 topalias/topalias/cli.py -h
+```
 
 ## License
 
