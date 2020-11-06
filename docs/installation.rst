@@ -13,7 +13,7 @@ To install topalias, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install --user topalias
+    $ pip3 install -U --user topalias
 
 This is the preferred method to install topalias, as it will always install the most recent stable release.
 
@@ -22,6 +22,9 @@ you through the process.
 
 .. _pip: https://pip.pypa.io
 .. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+
+    $ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    $ python3 get-pip.py
 
 
 From sources
@@ -45,7 +48,7 @@ Once you have a copy of the source, you can install it with:
 
 .. code-block:: console
 
-    $ python setup.py install
+    $ python3 setup.py install
 
 
 .. _Github repo: https://github.com/CSRedRat/topalias

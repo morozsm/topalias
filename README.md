@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.com/CSRedRat/topalias.svg?branch=master)](https://travis-ci.com/CSRedRat/topalias)
 [![Coverage](https://coveralls.io/repos/github/CSRedRat/topalias/badge.svg?branch=master)](https://coveralls.io/github/CSRedRat/topalias?branch=master)
+[![GitLab pipeline](https://gitlab.com/CSRedRat/topalias/badges/master/pipeline.svg)](https://gitlab.com/CSRedRat/topalias/-/pipelines)
 [![Python Version](https://img.shields.io/pypi/pyversions/topalias.svg)](https://pypi.org/project/topalias/)
-[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
-[topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator, written on [Python](https://pypi.org/project/topalias/).
+[topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator and statistics from command history, written on [Python](https://pypi.org/project/topalias/).
 
 
 ## Features
@@ -29,13 +29,15 @@ python3 topalias/setup.py install
 
 ## Example
 
+![generated bash aliases](images/bash_screenshot.png "Bash topalias output")
+
 Showcase how your project can be used:
 
 ```bash
 topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
 topalias -h # print help
 topalias history # analyze local bash history
-topalias h --min=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
+topalias h --acr=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
 ```
 
 File path search order:
@@ -75,3 +77,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+*GitLab repository mirror with CI/CD: [https://gitlab.com/CSRedRat/topalias](https://gitlab.com/CSRedRat/topalias)*

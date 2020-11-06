@@ -17,3 +17,4 @@ BeautifulSoup4
 bs4
 poetry
 black==20.8b1
+pre-commit

@@ -9,6 +9,19 @@ pip3 install -r requirements-dev.txt
 pip3 install -r requirements.txt
 ```
 
+Add git hooks:
+```bash
+pre-commit install -t pre-commit
+pre-commit install -t pre-push
+```
+
+If you use conda:
+```bash
+conda install --yes --file requirements-dev.txt
+conda install --yes --file requirements.txt
+conda install -c conda-forge pre-commit
+```
+
 You can use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
 
 To install them you would need to run `install` command:
@@ -25,6 +38,7 @@ To install them you would need to run `pipenv install` command:
 
 ```bash
 pipenv install --dev
+#pipenv lock # if need update Pipfile.lock
 ```
 
 Setup pre-commit and pre-push hooks:

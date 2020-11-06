@@ -2,42 +2,56 @@
 """Main function module. Not for executing, only library. Run project from __init__.py"""
 
 import os
-
 import re
 from collections import defaultdict
 
-PATHS = [".", "~"]
+home = os.path.expanduser("~")
+PATHS = [".", home]
 
 
-def find_first(filename, paths):
+def find_first(filename: str, paths: list) -> str:
+    """Find file in PATH
+    :rtype: str
+    :param filename: what file search
+    :param paths: where search file with directory order
+    :type filename: str
+    :type paths: list
+    """
     for directory in paths:
         full_path = os.path.join(directory, filename)
         if os.path.isfile(full_path):
             return full_path
+    return "Empty"
 
 
-def find_history():
-    history_name = ".bash_history"
+def find_history() -> str:
+    """Find command history file"""
+    history_name: str = ".bash_history"
     path = find_first(history_name, PATHS)
-    if path:
+    if path != "Empty":
         return path
-    else:
+    if path == "Empty":
         print("File {} not found in any of the directories".format(history_name))
-        fileDir = os.path.dirname(os.path.realpath("__file__"))
-        data_path = os.path.join(fileDir, "topalias\\data\\.bash_history")
-        return data_path
+        file_dir = os.path.dirname(os.path.realpath("__file__"))
+        data_path = os.path.join(file_dir, "topalias\\data\\.bash_history")
+    return data_path
 
 
-def find_aliases():
+def find_aliases() -> str:
+    """Find defined aliases file for shell"""
     aliases_name = ".bash_aliases"
     path = find_first(aliases_name, PATHS)
-    if path:
+    if path != "Empty":
         return path
-    else:
+    if path == "Empty":
         print("File {} not found in any of the directories".format(aliases_name))
+        file_dir = os.path.dirname(os.path.realpath("__file__"))
+        data_path = os.path.join(file_dir, "topalias\\data\\.bash_aliases")
+    return data_path
 
 
 def top_command(command: list, top=20) -> list:
+    """List top executed command from history"""
     counts = defaultdict(int)
     for x in command:
         counts[x] += 1
@@ -45,6 +59,7 @@ def top_command(command: list, top=20) -> list:
 
 
 def top_alias():
+    """Top used aliases"""
     print("Top used aliases: ")
     print("For suggest new amazing short aliases run:\ntopalias h")
     print("Print help:\ntopalias -h")
@@ -59,6 +74,7 @@ def welcome(event: str) -> None:
 
 
 def filter_alias_length(raw_command_bank: list, min_length: int) -> list:
+    """Return acronyms with minimal length"""
     filtered_bank = []
     for command in raw_command_bank:
         gen_alias = "".join(r.findall(command))
@@ -71,16 +87,17 @@ def filter_alias_length(raw_command_bank: list, min_length: int) -> list:
 
 
 def print_stat(raw_lines, filtered):
+    """Any statistics"""
     rows_count = len(raw_lines)
     unique_count = len(set(raw_lines))
     filtered_count = unique_count - len(set(filtered))
-    # gen_count = # TODO
     return print(
         f"commands in history: {rows_count}, unique commands: {unique_count}, filtered by length: {filtered_count}"
     )
 
 
 def print_hint():
+    """Hints for user"""
     print("\nRun after add aliases: source ~/.bash_aliases\n")
     print(
         "Hint (secure): Add space ' ' before sensitive command in terminal for skip save current command in history!"
@@ -89,8 +106,9 @@ def print_hint():
 
 
 def print_history(acronym_length) -> None:
+    """Main function for print top commands and suggestions aliases"""
     command_bank = []
-    with open(find_history(), "r") as f:
+    with open(find_history(), "r", encoding="utf-8") as f:
         for line in f:
             # print(str(line.startswith("#", 0, 1)) + " " + line)
             if not line.startswith("#", 0, 1):

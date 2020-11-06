@@ -2,13 +2,15 @@
 """Tests for `topalias` package."""
 
 import pytest
-
-from click.testing import CliRunner
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+from click.testing import CliRunner
 
-from topalias import aliascore
-from topalias import cli
+from topalias import aliascore, cli
+
+# from setuptools import setup, find_packages
+
+# setup(name="topalias", packages=find_packages())
 
 
 @pytest.fixture(name="response")

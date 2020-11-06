@@ -3,12 +3,15 @@
 """Console script for topalias."""
 
 import sys
+
 import click
 
-from topalias import aliascore as core
+import aliascore as core
 
 
 class AliasedGroup(click.Group):
+    """Add alias for command by function name"""
+
     def get_command(self, ctx, cmd_name):
         try:
             cmd_name = ALIASES[cmd_name].name
@@ -38,21 +41,20 @@ def main() -> int:
     click.echo(
         "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
     )
-    top_history()  # TODO: DEBUG, uncomment if below
-    # if not core.find_aliases():
-    #     top_history()
-    # else:
-    #     core.top_alias()
-    #     top_history(min=2)
+    if not core.find_aliases():
+        top_history()  # pylint: disable=no-value-for-parameter
+    else:
+        core.top_alias()
+        top_history()  # pylint: disable=no-value-for-parameter
     return 0
 
 
 @cli.command(name="history")
-@click.option("--min", default=1, help="Will print alias not less than this.")
-def top_history(min) -> int:  # args=None, @click.pass_context
+@click.option("--acr", default=1, help="Will print alias not less than this.")
+def top_history(acr) -> int:
     """Print bash history file."""
     click.echo(
-        core.print_history(min),
+        core.print_history(acr),
     )
     return 0
 
@@ -62,4 +64,4 @@ ALIASES = {
 }
 
 if __name__ == "__main__":
-    sys.exit(cli())  # pragma: no cover
+    sys.exit(cli())  # pragma: no cover # pylint: disable=no-value-for-parameter
