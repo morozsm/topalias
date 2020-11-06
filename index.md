@@ -1,37 +1,79 @@
-## Welcome to GitHub Pages
+# topalias
 
-You can use the [editor on GitHub](https://github.com/CSRedRat/topalias/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[![Build Status](https://travis-ci.com/CSRedRat/topalias.svg?branch=master)](https://travis-ci.com/CSRedRat/topalias)
+[![Coverage](https://coveralls.io/repos/github/CSRedRat/topalias/badge.svg?branch=master)](https://coveralls.io/github/CSRedRat/topalias?branch=master)
+[![GitLab pipeline](https://gitlab.com/CSRedRat/topalias/badges/master/pipeline.svg)](https://gitlab.com/CSRedRat/topalias/-/pipelines)
+[![Python Version](https://img.shields.io/pypi/pyversions/topalias.svg)](https://pypi.org/project/topalias/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator and statistics from command history, written on [Python](https://pypi.org/project/topalias/).
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Features
 
-```markdown
-Syntax highlighted code block
+- Generate short alias for popular command from bash history
+- Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+## Installation
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+From [pypi.org repository](https://pypi.org/project/topalias/):
+```bash
+pip3 install -U --user topalias
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+From source:
+```bash
+git clone https://github.com/CSRedRat/topalias
+python3 topalias/setup.py install
+```
 
-### Jekyll Themes
+## Example
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CSRedRat/topalias/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Showcase how your project can be used:
 
-### Support or Contact
+```bash
+topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
+topalias -h # print help
+topalias history # analyze local bash history
+topalias h --min=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+File path search order:
+- .bash_history in current . directory
+- .bash_history in home ~ directory
+- example development files in topalias/data
+
+Run as python module:
+```bash
+python3 -m topalias
+```
+
+Run as python script without install:
+```bash
+git clone https://github.com/CSRedRat/topalias
+python3 topalias/topalias/cli.py -h
+```
+
+## License
+
+[GPLv3](https://github.com/CSRedRat/topalias/blob/master/LICENSE)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://metin2wiki.ru/"><img src="https://avatars1.githubusercontent.com/u/1287586?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sergey Chudakov</b></sub></a><br /><a href="https://github.com/CSRedRat/topalias/commits?author=CSRedRat" title="Code">💻</a> <a href="#infra-CSRedRat" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-CSRedRat" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-CSRedRat" title="Maintenance">🚧</a> <a href="#platform-CSRedRat" title="Packaging/porting to new platform">📦</a> <a href="#mentoring-CSRedRat" title="Mentoring">🧑‍🏫</a> <a href="#example-CSRedRat" title="Examples">💡</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+*GitLab repository mirror with CI/CD: https://gitlab.com/CSRedRat/topalias*
