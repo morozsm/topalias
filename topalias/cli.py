@@ -2,19 +2,10 @@
 # -*- coding: utf-8 -*-
 """Console script for topalias."""
 
-import os
 import sys
 
-sys.path.append(os.getcwd())
-# isort: split
-
-# pylint: disable=wrong-import-position
-import click
-
 import aliascore as core
-
-
-# pylint: enable=wrong-import-position
+import click
 
 
 class AliasedGroup(click.Group):
@@ -45,7 +36,7 @@ def cli(ctx) -> int:
     context_settings=dict(help_option_names=["-h", "--help"]),
 )
 def main() -> int:
-    """Print bash history file."""
+    """Main function for group command call."""
     click.echo(
         "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
     )

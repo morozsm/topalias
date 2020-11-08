@@ -5,7 +5,6 @@ import pytest
 import requests
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
-
 from topalias import aliascore, cli
 
 # from setuptools import setup, find_packages

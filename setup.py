@@ -44,7 +44,7 @@ setup(
     description="Linux bash aliases generator",
     entry_points={
         "console_scripts": [
-            "topalias=topalias.cli:main",
+            "topalias=topalias.cli:cli",
         ],
     },
     install_requires=requirements,
