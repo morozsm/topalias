@@ -1,6 +1,6 @@
 # How to contribute
 
-topalias developed in PyCharm, Anaconda with Python 3.8. Package will run on Python 3.5-3.9.
+topalias developed in PyCharm, pienv (earlier Anaconda) with Python 3.8. Package will run on Python 3.6-3.9.
 
 ## Dependencies
 
