@@ -80,4 +80,4 @@ jobs:
 
       - name: Smoke test docker image
         run: |
-          docker run --rm topalias:test --acr=2
+          docker run --rm topalias:test

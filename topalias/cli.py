@@ -2,13 +2,19 @@
 # -*- coding: utf-8 -*-
 """Console script for topalias."""
 
-import os, sys
+import os
+import sys
 
 sys.path.append(os.getcwd())
+# isort: split
 
+# pylint: disable=wrong-import-position
 import click
 
 import aliascore as core
+
+
+# pylint: enable=wrong-import-position
 
 
 class AliasedGroup(click.Group):
