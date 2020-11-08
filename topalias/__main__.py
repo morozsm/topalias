@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Main python file for start project execution (entrypoint). Functions are listed in aliascore.py and other modules"""
 
+import sys, os
+
+sys.path.append(os.getcwd())
+
 import aliascore
 import cli
 

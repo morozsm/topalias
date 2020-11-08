@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 """Console script for topalias."""
 
-import sys
+import os, sys
+
+sys.path.append(os.getcwd())
 
 import click
 

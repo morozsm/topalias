@@ -7,27 +7,40 @@
 
 [topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator and statistics from command history, written on [Python](https://pypi.org/project/topalias/).
 
-
 ## Features
 
-- Generate short alias for popular command from bash history
-- Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
-
+-   Generate short alias for popular command from bash history
+-   Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
 
 ## Installation
 
 From [pypi.org repository](https://pypi.org/project/topalias/):
+
 ```bash
 pip3 install -U --user topalias
 ```
 
 From source:
+
 ```bash
 git clone https://github.com/CSRedRat/topalias
 python3 topalias/setup.py install
 ```
 
-## Example
+Run as python script without install:
+
+```bash
+git clone https://github.com/CSRedRat/topalias
+python3 topalias/topalias/cli.py -h
+```
+
+### Install requirements
+
+```bash
+sudo apt install python3 python3-pip -y
+```
+
+## Usage
 
 ![generated bash aliases](images/bash_screenshot.png "Bash topalias output")
 
@@ -41,20 +54,32 @@ topalias h --acr=2 # set minimal length for generated acronym filter, so that ex
 ```
 
 File path search order:
-- .bash_history in current . directory
-- .bash_history in home ~ directory
-- example development files in topalias/data
+
+-   .bash_history in current . directory
+-   .bash_history in home ~ directory
+-   example development files in topalias/data
 
 Run as python module:
+
 ```bash
 python3 -m topalias
 ```
 
-Run as python script without install:
-```bash
-git clone https://github.com/CSRedRat/topalias
-python3 topalias/topalias/cli.py -h
-```
+Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) on Windows and in [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
+
+## TODO
+
+-   zsh support
+-   exclude used alias from command chart
+-   alias use statistic
+-   only util in command without parameters usage statistic
+-   history file path parameter
+-   top command count parameter
+-   alias max length parameter
+-   snap package
+-   flatpak package
+
+Please add you feature requests: [https://github.com/CSRedRat/topalias/issues/new](https://github.com/CSRedRat/topalias/issues/new)
 
 ## License
 
@@ -78,4 +103,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-*GitLab repository mirror with CI/CD: [https://gitlab.com/CSRedRat/topalias](https://gitlab.com/CSRedRat/topalias)*
+_GitLab repository mirror with CI/CD: [https://gitlab.com/CSRedRat/topalias](https://gitlab.com/CSRedRat/topalias)_
+_GitHub Pages: [https://csredrat.github.io/topalias/](https://csredrat.github.io/topalias/)_
