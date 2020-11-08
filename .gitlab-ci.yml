@@ -1,5 +1,14 @@
 image: python:3.8-slim
 
+variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+    key: one-key-to-rule-them-all
+    paths:
+        - .cache/pip
+        - venv/
+
 stages:
     - build
     - test
@@ -34,16 +43,27 @@ publish:
     variables:
         TWINE_USERNAME: $TWINE_USERNAME
         TWINE_PASSWORD: $TWINE_PASSWORD
+        PYPI_USER: $PYPI_USER
+        PYPI_PASSWORD: $PYPI_PASSWORD
     script:
         - pip install -r requirements.txt
         - pip install -r requirements-dev.txt
-        - python setup.py sdist bdist_wheel
         - pip install -U twine
+        - echo "[distutils]" >> ~/.pypirc
+        - echo "index-servers =" >> ~/.pypirc
+        - echo "    pypi" >> ~/.pypirc
+        - echo "" >> ~/.pypirc
+        - echo "[pypi]" >> ~/.pypirc
+        - 'echo "repository: https://upload.pypi.org/legacy/" >> ~/.pypirc'
+        - 'echo "username: ${PYPI_USER}" >> ~/.pypirc'
+        - 'echo "password: ${PYPI_PASSWORD}" >> ~/.pypirc'
+        - python3 setup.py check sdist bdist
+        - python setup.py sdist bdist_wheel
         - twine upload --verbose dist/*
     artifacts:
         paths:
             - dist/*.whl
-    #    expire_in: 1 month
+    # expire_in: 1 month
     tags:
         - docker
     only:
