@@ -46,8 +46,8 @@ publish:
         PYPI_USER: $PYPI_USER
         PYPI_PASSWORD: $PYPI_PASSWORD
     script:
-        - pip install -r requirements.txt
-        - pip install -r requirements-dev.txt
+        # - pip install -r requirements.txt
+        # - pip install -r requirements-dev.txt
         - pip install -U twine
         - echo "[distutils]" >> ~/.pypirc
         - echo "index-servers =" >> ~/.pypirc
@@ -58,11 +58,11 @@ publish:
         - 'echo "username: ${PYPI_USER}" >> ~/.pypirc'
         - 'echo "password: ${PYPI_PASSWORD}" >> ~/.pypirc'
         - python3 setup.py check sdist bdist
-        - python setup.py sdist bdist_wheel
+#        - python setup.py sdist bdist_wheel
         - twine upload --verbose dist/*
-    artifacts:
-        paths:
-            - dist/*.whl
+    # artifacts:
+    #     paths:
+    #         - dist/*.whl
     # expire_in: 1 month
     tags:
         - docker
