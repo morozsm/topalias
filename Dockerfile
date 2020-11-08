@@ -37,4 +37,4 @@ COPY . .
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "topalias"]
-CMD ["--min=2"]
+CMD ["--acr=2"]
