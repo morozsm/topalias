@@ -99,6 +99,10 @@ def print_stat(raw_lines, filtered) -> None:
 hint_bank = (
     "Hint (secure): Add space ' ' before sensitive command in terminal for skip save current command in history!",
     "Hint: command 'sudo !!' after you forget add sudo before command in previous command",
+    "Hint: command !<history command number> for repeat command from history",
+    "Hint (usability): add timestamp to new history: echo \"export HISTTIMEFORMAT='%F %T '\" >> ~/.bashrc",
+    "Hint (usability): ignore command in history: echo \"export HISTIGNORE='ls -l:pwd:date:ll:ls:'\" >> ~/.bashrc",
+    'Hint (usability): ignore duplicates in history: echo "export HISTCONTROL=ignoreboth" >> ~/.bashrc',
 )
 
 

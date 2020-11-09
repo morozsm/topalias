@@ -20,7 +20,7 @@ If you use conda:
 ```bash
 conda install --yes --file requirements-dev.txt
 conda install --yes --file requirements.txt
-conda install -c conda-forge pre-commit
+conda install -c conda-forge pre-commit  # work only in Linux
 ```
 
 You can use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.

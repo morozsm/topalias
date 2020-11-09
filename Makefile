@@ -4,9 +4,9 @@ SHELL:=/usr/bin/env bash
 .DEFAULT_GOAL := help
 
 .PHONY: lint
-lint:
+lint:  # check style with flake8
 #	mypy topalias tests/**/*.py
-	flake8 . --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
+	flake8 topalias tests --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
 #	doc8 -q docs
 
 .PHONY: unit
@@ -70,8 +70,8 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-lint: ## check style with flake8
-	flake8 topalias tests --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
+# lint: ## check style with flake8
+# 	flake8 topalias tests --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
 
 test: ## run tests quickly with the default Python
 	pytest
