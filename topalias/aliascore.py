@@ -34,8 +34,8 @@ def find_history() -> str:
         return path
     print("File {} not found in any of the directories".format(history_name))
     file_dir = os.path.dirname(os.path.realpath("__file__"))
-    data_path = os.path.join(file_dir, r"topalias\data\.bash_history")
-    return data_path
+    data_path = os.path.join(file_dir, r"topalias/data/.bash_history")
+    return data_path  # noqa: WPS331
 
 
 def find_aliases() -> str:
@@ -46,8 +46,8 @@ def find_aliases() -> str:
         return path
     print("File {} not found in any of the directories".format(aliases_name))
     file_dir = os.path.dirname(os.path.realpath("__file__"))
-    data_path = os.path.join(file_dir, r"topalias\data\.bash_aliases")
-    return data_path
+    data_path = os.path.join(file_dir, r"topalias/data/.bash_aliases")
+    return data_path  # noqa: WPS331
 
 
 def top_command(command, top=20) -> list:
