@@ -71,7 +71,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 topalias tests --ignore WPS410,WPS305,WPS421,WPS336,WPS317
+	flake8 topalias tests --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
 
 test: ## run tests quickly with the default Python
 	pytest

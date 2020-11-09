@@ -9,7 +9,11 @@
 
 ## Features
 
--   Generate short alias for popular command from bash history
+-   Generate short alias for popular command from bash/zsh shell history
+-   Command history statistics & analytics
+-   Parametrised input
+-   Console help for all commands, options and arguments
+-   Shell workflow hints
 -   Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
 
 ## Installation
@@ -76,8 +80,6 @@ Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) 
 -   history file path parameter
 -   top command count parameter
 -   alias max length parameter
--   snap package
--   flatpak package
 
 Please add you feature requests: [https://github.com/CSRedRat/topalias/issues/new](https://github.com/CSRedRat/topalias/issues/new)
 
