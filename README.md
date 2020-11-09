@@ -104,4 +104,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 _GitLab repository mirror with CI/CD: [https://gitlab.com/CSRedRat/topalias](https://gitlab.com/CSRedRat/topalias)_
+
 _GitHub Pages: [https://csredrat.github.io/topalias/](https://csredrat.github.io/topalias/)_

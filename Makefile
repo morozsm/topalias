@@ -6,7 +6,7 @@ SHELL:=/usr/bin/env bash
 .PHONY: lint
 lint:
 #	mypy topalias tests/**/*.py
-	flake8 . --ignore WPS410,WPS305,WPS421,WPS336,WPS317
+	flake8 . --ignore WPS410,WPS305,WPS421,WPS336,WPS317,WPS111
 #	doc8 -q docs
 
 .PHONY: unit

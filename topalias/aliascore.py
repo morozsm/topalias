@@ -32,10 +32,9 @@ def find_history() -> str:
     path = find_first(history_name, PATHS)
     if path != NOTHING:
         return path
-    if path == NOTHING:
-        print("File {} not found in any of the directories".format(history_name))
-        file_dir = os.path.dirname(os.path.realpath("__file__"))
-        data_path = os.path.join(file_dir, r"topalias\data\.bash_history")
+    print("File {} not found in any of the directories".format(history_name))
+    file_dir = os.path.dirname(os.path.realpath("__file__"))
+    data_path = os.path.join(file_dir, r"topalias\data\.bash_history")
     return data_path
 
 

@@ -68,8 +68,8 @@ def top_history(acr) -> None:
     )
 
 
-ALIASES = {
-    "h": top_history,  # noqa: WPS407, need frozendict
+ALIASES = {  # noqa: WPS407, need frozendict
+    "h": top_history,
 }
 
 if __name__ == "__main__":

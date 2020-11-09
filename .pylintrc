@@ -5,4 +5,4 @@ init-hook="from pylint.config import find_pylintrc; import os, sys; sys.path.app
 good-names=i,j,x,y,k,s,f
 
 [FORMAT]
-max-line-length=180
+max-line-length=120
