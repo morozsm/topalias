@@ -54,7 +54,6 @@ jobs:
                     sudo apt install html2text
                     curl https://pypi.org/project/topalias/ | html2text
                     pip install -U --user topalias
-                    curl https://www.linkedin.com/in/chudakov/ | html2text
                     echo "Project development history"
                     curl https://github.com/CSRedRat/topalias/wiki/Development | html2text
                     python -m topalias

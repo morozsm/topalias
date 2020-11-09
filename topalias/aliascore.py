@@ -96,11 +96,17 @@ def print_stat(raw_lines, filtered) -> None:
     )
 
 
+HISTTIMEFORMAT_FIRST = "Hint (usability): add timestamp to new history: "
+HISTTIMEFORMAT_SECOND = (
+    "echo \"export HISTTIMEFORMAT='%F %T '\" >> ~/.bashrc"  # noqa: WPS323
+)
+HISTTIMEFORMAT = "".join((HISTTIMEFORMAT_FIRST, HISTTIMEFORMAT_SECOND))
+
 hint_bank = (
     "Hint (secure): Add space ' ' before sensitive command in terminal for skip save current command in history!",
     "Hint: command 'sudo !!' after you forget add sudo before command in previous command",
     "Hint: command !<history command number> for repeat command from history",
-    "Hint (usability): add timestamp to new history: echo \"export HISTTIMEFORMAT='%F %T '\" >> ~/.bashrc",
+    HISTTIMEFORMAT,
     "Hint (usability): ignore command in history: echo \"export HISTIGNORE='ls -l:pwd:date:ll:ls:'\" >> ~/.bashrc",
     'Hint (usability): ignore duplicates in history: echo "export HISTCONTROL=ignoreboth" >> ~/.bashrc',
 )
