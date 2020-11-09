@@ -15,51 +15,61 @@ class AliasedGroup(click.Group):
         try:
             cmd_name = ALIASES[cmd_name].name
         except KeyError:
-            pass
+            pass  # noqa: WPS420
         return super().get_command(ctx, cmd_name)
 
 
 @click.group(
     cls=AliasedGroup,
-    context_settings=dict(help_option_names=["-h", "--help"]),
+    context_settings=dict(help_option_names=["-h", "--help"]),  # noqa: C408
     invoke_without_command=True,
 )
+@click.option(
+    "--debug/--no-debug",
+    default=False,
+    help="Enable debug strings in output.",
+)
 @click.pass_context
-def cli(ctx) -> int:
+def cli(ctx, debug) -> int:
     """Entrypoint function, group command"""
+    if debug:
+        click.echo("Debug mode is ON")
     if ctx.invoked_subcommand is None:
-        main()
+        return main()
     return 0
 
 
 @cli.command(
-    context_settings=dict(help_option_names=["-h", "--help"]),
+    context_settings=dict(help_option_names=["-h", "--help"]),  # noqa: C408
 )
 def main() -> int:
     """Main function for group command call."""
     click.echo(
         "topalias - linux bash/zsh alias generator & history analytics https://github.com/CSRedRat/topalias",
     )
-    if not core.find_aliases():
+    if core.find_aliases():
+        core.top_alias()
         top_history()  # pylint: disable=no-value-for-parameter
     else:
-        core.top_alias()
         top_history()  # pylint: disable=no-value-for-parameter
     return 0
 
 
 @cli.command(name="history")
-@click.option("--acr", default=1, help="Will print alias not less than this.")
-def top_history(acr) -> int:
+@click.option(
+    "--acr",
+    default=1,
+    help="Will print acronyms for alias not less this value.",
+)
+def top_history(acr) -> None:
     """Print bash history file."""
     click.echo(
         core.print_history(acr),
     )
-    return 0
 
 
 ALIASES = {
-    "h": top_history,
+    "h": top_history,  # noqa: WPS407, need frozendict
 }
 
 if __name__ == "__main__":

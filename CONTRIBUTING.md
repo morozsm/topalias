@@ -7,6 +7,7 @@ topalias developed in PyCharm, pienv (earlier Anaconda) with Python 3.8. Package
 ```bash
 pip3 install -r requirements-dev.txt
 pip3 install -r requirements.txt
+#pip freeze > requirements-freeze.txt # for freeze current env req
 ```
 
 Add git hooks:

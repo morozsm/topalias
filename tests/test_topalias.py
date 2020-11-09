@@ -7,10 +7,6 @@ from bs4 import BeautifulSoup
 from click.testing import CliRunner
 from topalias import aliascore, cli
 
-# from setuptools import setup, find_packages
-
-# setup(name="topalias", packages=find_packages())
-
 
 @pytest.fixture(name="response")
 def fixture_response():
@@ -24,13 +20,13 @@ def fixture_response():
 def test_content(response):
     """Sample pytest test function with the pytest fixture as an argument."""
 
-    assert "GitHub" in BeautifulSoup(response.content).title.string
+    assert "GitHub" in BeautifulSoup(response.content, features="html5lib").title.string
 
 
 @pytest.mark.parametrize(
     ("message", "expected"),
     [
-        ("test", "topalias util test\n"),
+        ("test", "console util test\n"),
     ],
 )
 def test_welcome(capsys, message: str, expected: str):
@@ -43,9 +39,9 @@ def test_welcome(capsys, message: str, expected: str):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result_output = runner.invoke(cli.main)
-    assert result_output.exit_code == 0
-    assert "https://github.com/CSRedRat/topalias" in result_output.output
-    help_result = runner.invoke(cli.main, ["--help"])
+    history_output = runner.invoke(cli.cli, ["history"])
+    assert history_output.exit_code == 0
+    assert "Run after add alias: " in history_output.output
+    help_result = runner.invoke(cli.cli, ["--debug", "--help"])
     assert help_result.exit_code == 0
-    assert "--help  Show this message and exit." in help_result.output
+    assert "-h, --help            Show this message and exit." in help_result.output

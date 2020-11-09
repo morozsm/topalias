@@ -24,7 +24,7 @@ From source:
 
 ```bash
 git clone https://github.com/CSRedRat/topalias
-python3 topalias/setup.py install
+python3 topalias/setup.py install --user
 ```
 
 Run as python script without install:
