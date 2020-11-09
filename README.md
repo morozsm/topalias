@@ -14,7 +14,6 @@
 -   Parametrised input
 -   Console help for all commands, options and arguments
 -   Shell workflow hints
--   Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
 
 ## Installation
 
@@ -75,7 +74,9 @@ Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) 
 
 -   zsh support
 -   exclude used alias from command chart
--   alias use statistic
+-   alias usage statistic
+-   add any acronym algorithm
+-   more statistics & analytics (used dir, utils, parameters, time)
 -   only util in command without parameters usage statistic
 -   history file path parameter
 -   top command count parameter

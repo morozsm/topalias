@@ -11,7 +11,7 @@ PATHS = (".", home)
 NOTHING = "Empty"
 
 
-def find_first(filename: str, paths: tuple) -> str:
+def find_first(filename: str, paths: tuple) -> str:  # type: ignore
     """Find file in PATH
     :rtype: str
     :param filename: what file search
@@ -50,9 +50,9 @@ def find_aliases() -> str:
     return data_path  # noqa: WPS331
 
 
-def top_command(command, top=20) -> list:
+def top_command(command, top=20) -> list:  # type: ignore
     """List top executed command from history"""
-    counts = defaultdict(int)
+    counts = defaultdict(int)  # type: ignore
     for x in command:
         counts[x] += 1
     return sorted(counts.items(), reverse=True, key=lambda tup: tup[1])[:top]
@@ -73,7 +73,7 @@ def welcome(event: str) -> None:
     print(f"console util {event}")
 
 
-def filter_alias_length(raw_command_bank, min_length: int) -> list:
+def filter_alias_length(raw_command_bank, min_length: int) -> list:  # type: ignore
     """Return acronyms with minimal length"""
     filtered_bank = []
     for command in raw_command_bank:
