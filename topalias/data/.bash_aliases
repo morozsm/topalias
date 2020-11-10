@@ -18,7 +18,7 @@ alias traceroute="grc --colour=auto traceroute"
 alias wdiff="grc --colour=auto wdiff"
 alias make="grc --colour=auto make"
 alias ll="grc --colour=auto ls -laFh --color=always"
-alias l="grc --colour=auto ls -lah --color=always"
+alias l = "grc --colour=auto ls -lah --color=always"
 
 # admin tooling
 alias tcp="netstat -ltupn" # list open tcp port without sudo

@@ -47,19 +47,20 @@ sudo apt install python3 python3-pip -y
 
 ![generated bash aliases](images/bash_screenshot.png "Bash topalias output")
 
-Showcase how your project can be used:
+Syntax: `topalias [OPTIONS] COMMAND [ARGUMENTS]`
 
 ```bash
 topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
 topalias -h # print help
-topalias history # analyze local bash history
-topalias h --acr=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
+topalias --min=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
+topalias --debug history # only analyze local bash history and print filtered rows
 ```
 
-File path search order:
+Files path search order:
 
--   .bash_history in current . directory
--   .bash_history in home ~ directory
+-   directory from execution parameter 
+-   .bash_history in . current directory
+-   .bash_history in ~ user home directory
 -   example development files in topalias/data
 
 Run as python module:
@@ -73,6 +74,7 @@ Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) 
 ## TODO
 
 -   zsh support
+-   multiline command in history
 -   exclude used alias from command chart
 -   alias usage statistic
 -   add any acronym algorithm
