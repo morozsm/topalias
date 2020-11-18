@@ -18,7 +18,9 @@ suggestion_count = 20
 debug = False
 
 logging.basicConfig(
-    stream=sys.stdout, format='%(levelname)s:%(message)s', level=(logging.DEBUG if debug else logging.ERROR)
+    stream=sys.stdout,
+    format="%(levelname)s:%(message)s",
+    level=(logging.DEBUG if debug else logging.ERROR),
 )
 
 
@@ -66,9 +68,7 @@ def top_command(command, limit) -> list:  # type: ignore
     counts = defaultdict(int)  # type: ignore
     for x in command:
         counts[x] += 1
-    return sorted(counts.items(), reverse=True, key=lambda tup: tup[1])[
-           :limit
-           ]
+    return sorted(counts.items(), reverse=True, key=lambda tup: tup[1])[:limit]
 
 
 def top_alias():
@@ -131,7 +131,7 @@ def print_stat(raw_lines, filtered) -> None:
     filtered_count = unique_count - len(set(filtered))
     print(
         f"\ncommands in history: {rows_count}, unique commands: {unique_count}, filtered by length: {filtered_count}\n",
-        f"most used utils: {', '.join(map(str, most_used_utils(load_command_bank())))}"  # TODO: need format statistic
+        f"most used utils: {', '.join(map(str, most_used_utils(load_command_bank())))}",  # TODO: need format statistic
     )
 
 
