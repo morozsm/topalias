@@ -1,9 +1,14 @@
 # topalias
 
 [![Build Status](https://travis-ci.com/CSRedRat/topalias.svg?branch=master)](https://travis-ci.com/CSRedRat/topalias)
+[![Test Status](https://github.com/CSRedRat/topalias/workflows/Test/badge.svg?branch=master)](https://github.com/CSRedRat/topalias/actions?query=workflow%3ATest)
 [![Coverage](https://coveralls.io/repos/github/CSRedRat/topalias/badge.svg?branch=master)](https://coveralls.io/github/CSRedRat/topalias?branch=master)
 [![GitLab pipeline](https://gitlab.com/CSRedRat/topalias/badges/master/pipeline.svg)](https://gitlab.com/CSRedRat/topalias/-/pipelines)
 [![Python Version](https://img.shields.io/pypi/pyversions/topalias.svg)](https://pypi.org/project/topalias/)
+[![Downloads](https://static.pepy.tech/personalized-badge/topalias?period=total&units=international_system&left_color=black&right_color=orange&left_text=Downloads)](https://pepy.tech/project/topalias)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/CSRedRat/topalias/?ref=repository-badge)
 
 [topalias](https://github.com/CSRedRat/topalias) - Linux bash/zsh alias generator and statistics from command history, written on [Python](https://pypi.org/project/topalias/).
 
@@ -43,17 +48,28 @@ python3 topalias/topalias/cli.py -h
 sudo apt install python3 python3-pip -y
 ```
 
+Add PATH environment variable for run Python tools as Linux utility:
+
+```bash
+echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
+source ~/.bashrc
+```
+
 ## Usage
 
-![generated bash aliases](images/bash_screenshot.png "Bash topalias output")
+![generated bash aliases](https://github.com/CSRedRat/topalias/raw/master/images/bash_screenshot.png "Bash topalias output")
 
 Syntax: `topalias [OPTIONS] COMMAND [ARGUMENTS]`
 
+Without command utility check if you use alias in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
+
 ```bash
-topalias # check if you uses aliases in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
-topalias -h # print help
-topalias --min=2 # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
-topalias --debug history # only analyze local bash history and print filtered rows
+python3 -m topalias  # run as python module
+topalias  # check aliases and print suggestion bash command history
+topalias -h  # print help
+topalias --zsh  # work with zsh shell command history
+topalias --min=2  # set minimal length for generated acronym filter, so that exclude some short command and find long, hard, usable command
+topalias --debug history  # only analyze local bash history and print filtered rows
 ```
 
 Files path search order:
@@ -63,25 +79,19 @@ Files path search order:
 -   .bash_history in ~ user home directory
 -   example development files in topalias/data
 
-Run as python module:
+You can change dot files search path to another user home directory:
 
 ```bash
-python3 -m topalias
+topalias -f /home/user  # or topalias --path /home/user
 ```
 
 Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) on Windows and in [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
 
 ## TODO
 
--   zsh support
 -   multiline command in history
--   exclude used alias from command chart
--   alias usage statistic
--   add any acronym algorithm
+-   add any another acronym algorithm with semantic
 -   more statistics & analytics (used dir, utils, parameters, time)
--   only util in command without parameters usage statistic
--   history file path parameter
--   top command count parameter
 -   alias max length parameter
 
 Please add you feature requests: [https://github.com/CSRedRat/topalias/issues/new](https://github.com/CSRedRat/topalias/issues/new)
