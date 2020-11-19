@@ -21,7 +21,7 @@ HISTORY_FILE = ".bash_history"
 logging.basicConfig(
     stream=sys.stdout,
     format="%(levelname)s:%(message)s",
-    level=(logging.DEBUG if debug else logging.ERROR),
+    level=(logging.DEBUG if DEBUG else logging.ERROR),
 )
 
 
