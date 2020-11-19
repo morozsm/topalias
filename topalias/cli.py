@@ -24,7 +24,7 @@ def print_version(ctx, ver):
     """Print current program version and check available online"""
     if not ver or ctx.resilient_parsing:
         return
-    click.echo(f"topalias utility version: {__version__}")
+    click.echo("topalias utility version: {}".format(__version__))
     click.echo("Update command:\npip3 install -U --user topalias")
     ctx.exit()
 

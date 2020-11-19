@@ -85,7 +85,7 @@ acronyminator = re.compile(r"(?:(?<=\s)|^)(?:[a-z]|\d+)")
 
 def welcome(event: str) -> None:
     """Event message inside the program."""
-    print(f"console util {event}")
+    print("console util {}".format(event))
 
 
 def filter_alias_length(raw_command_bank, min_length: int) -> list:  # type: ignore
@@ -109,22 +109,30 @@ def print_stat(raw_lines, filtered) -> None:
     top_utils = most_used_utils(load_command_bank(filtering=ALIASES_FILTER))
     top_utils_text_line = ""
     for paired_rank in top_utils:  # noqa: WPS440, WPS519
-        top_utils_text_line += f"{paired_rank[0]}: {paired_rank[1]}, "  # noqa: WPS441
+        top_utils_text_line += "{}: {}, ".format(
+            paired_rank[0],
+            paired_rank[1],
+        )  # noqa: WPS441
     top_utils_text_line = top_utils_text_line[:-2]
     print(
-        f"\ncommands in history: {rows_count}, unique commands: {unique_count}, filtered by length: {filtered_count}\n",
-        f"most used utils: {top_utils_text_line}",
+        "\ncommands in history: {}, unique commands: {}, filtered by length: {}\n".format(
+            rows_count,
+            unique_count,
+            filtered_count,
+        ),
+        "most used utils: {}".format(top_utils_text_line),
     )
     if used_alias:
         top_aliases = most_used_utils(load_command_bank(), aliases=used_alias)
         top_aliases_text_line = ""
         for paired_rank in top_aliases:  # noqa: WPS440, WPS519
-            top_aliases_text_line += (
-                f"{paired_rank[0]}: {paired_rank[1]}, "  # noqa: WPS441
-            )
+            top_aliases_text_line += "{}: {}, ".format(
+                paired_rank[0],
+                paired_rank[1],
+            )  # noqa: WPS441
         top_aliases_text_line = top_aliases_text_line[:-2]
         if top_aliases:
-            print(f" most used aliases: {top_aliases_text_line}")
+            print(" most used aliases: {}".format(top_aliases_text_line))
 
 
 HISTTIMEFORMAT_FIRST = "Hint: add timestamps in history log: "
@@ -193,14 +201,16 @@ def print_history(acronym_length) -> None:  # noqa: WPS210
 
     for num, ranked_command in reversed(list(enumerate(top_raw_list, start=1))):
         acronym = "".join(acronyminator.findall(ranked_command[0]))
-        linux_add_alias = (
-            f"echo \"alias {acronym}='{ranked_command[0]}'\" >> {aliases_output}"
+        linux_add_alias = "echo \"alias {}='{}'\" >> {}".format(
+            acronym,
+            ranked_command[0],
+            aliases_output,
         )
         print(
-            f"{num}. {ranked_command[0]}\n",  # noqa: WPS221
-            f"executed count: {ranked_command[1]}, suggestion: {acronym}",
+            "{}. {}\n".format(num, ranked_command[0]),  # noqa: WPS221
+            "executed count: {}, suggestion: {}".format(ranked_command[1], acronym),
             "\n",
-            f"{linux_add_alias}",
+            "{}".format(linux_add_alias),
         )
     print_stat(command_bank, filtered_alias_bank)
     print_hint()
