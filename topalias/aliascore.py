@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Main module. Not for executing, only library. Run project from cli.py"""
 
+import io
 import logging
 import os
 import random
@@ -63,8 +64,8 @@ def find_aliases() -> str:
     if aliases_path != NOTHING:
         return aliases_path
     print("File {} not found in any of the directories".format(aliases_name))
-    file_dir = os.path.dirname(os.path.realpath("__file__"))
-    data_path = os.path.join(file_dir, r"topalias/data/.bash_aliases")
+    file_dir = os.path.dirname(os.path.realpath(__file__))
+    data_path = os.path.join(file_dir, r"data/.bash_aliases")
     return data_path  # noqa: WPS331
 
 
@@ -165,16 +166,9 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
     history_file_path = find_history()
-    if HISTORY_FILE == ".zsh_history":
-        file_history_encoding = "unicode_escape"
-    else:
-        file_history_encoding = "utf-8"
-    with open(
-        r"{}".format(history_file_path),
-        "r",
-        encoding=file_history_encoding,
-    ) as history_data:
-        for line in history_data:
+    with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
+        history_data_encoded = io.TextIOWrapper(history_data, encoding="UTF-8")
+        for line in history_data_encoded:
             if HISTORY_FILE == ".bash_history":
                 if (not line.startswith("#", 0, 1)) and line != "":
                     clear_line = line.rstrip()
