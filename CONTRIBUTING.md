@@ -132,17 +132,17 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 1. Fork the `topalias` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@github.com:your_name_here/topalias.git
+    \$ git clone git@github.com:your_name_here/topalias.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv topalias
     $ cd topalias/
-    $ python setup.py develop
+    \$ python setup.py develop
 
 4. Create a branch for local development::
 
-    $ git checkout -b name-of-your-bugfix-or-feature
+    \$ git checkout -b name-of-your-bugfix-or-feature
 
     Now you can make your changes locally.
 
@@ -151,7 +151,7 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 
     $ flake8 topalias tests
     $ python setup.py test or pytest
-    $ tox
+    \$ tox
 
     To get flake8 and tox, just pip install them into your virtualenv.
 
@@ -159,7 +159,7 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
-    $ git push origin name-of-your-bugfix-or-feature
+    \$ git push origin name-of-your-bugfix-or-feature
 
 7. Submit a pull request through the GitHub website.
 

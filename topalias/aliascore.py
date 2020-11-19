@@ -64,7 +64,7 @@ def find_aliases() -> str:
     data_path = os.path.join(file_dir, r"topalias/data/.bash_aliases")
     return data_path  # noqa: WPS331
 
-  
+
 used_alias = []
 
 
