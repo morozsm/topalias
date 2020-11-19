@@ -23,7 +23,7 @@ build:
         - pip install dist/*
     artifacts:
         paths:
-            - dist/*.whl
+            - dist/*
         expire_in: 1 week
     tags:
         - docker
@@ -53,7 +53,7 @@ publish_pypi:
         - 'echo "repository: https://upload.pypi.org/legacy/" >> ~/.pypirc'
         - 'echo "username: ${PYPI_USER}" >> ~/.pypirc'
         - 'echo "password: ${PYPI_PASSWORD}" >> ~/.pypirc'
-        - python3 setup.py check sdist bdist
+        - python3 setup.py check
         - twine upload --verbose dist/*
     tags:
         - docker
