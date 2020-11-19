@@ -156,13 +156,13 @@ def load_command_bank(filtering=False):
     with open(find_history(), "r", encoding="utf-8") as history_data:
         for line in history_data:
             if HISTORY_FILE == ".bash_history":
-                if not line.startswith("#", 0, 1):
+                if (not line.startswith("#", 0, 1)) and line != "":
                     clear_line = line.rstrip()
-                    if filtering:
+                    if filtering and clear_line:
                         first_word_in_command = clear_line.split()[0]
                         if first_word_in_command not in used_alias:
                             command_bank.append(clear_line)
-                    else:
+                    elif clear_line:
                         command_bank.append(clear_line)
             else:
                 clear_line = line.split(";")[1].rstrip()
