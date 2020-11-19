@@ -8,8 +8,8 @@ python_version = "3.8"
 
 [packages]
 Click = "==7.1.2"
-requests = "*"
-packaging = "*"
+#requests = "*"
+#packaging = "*"
 
 [dev-packages]
 setuptools = "==50.3.2"

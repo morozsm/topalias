@@ -35,8 +35,8 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 Click = "^7.1"
-requests = "^2.24.0"
-packaging = "^20.4"
+#requests = "^2.24.0"
+#packaging = "^20.4"
 
 [tool.poetry.dev-dependencies]
 setuptools = "^50.3.2"

@@ -6,7 +6,7 @@ import sys
 
 import aliascore as core
 import click
-from __init__ import __version__, get_examples, get_version
+from __init__ import __version__
 
 
 class AliasedGroup(click.Group):
@@ -25,9 +25,6 @@ def print_version(ctx, ver):
     if not ver or ctx.resilient_parsing:
         return
     click.echo(f"topalias utility version: {__version__}")
-    click.echo(
-        f"Latest release: {get_version()} on https://pypi.org/project/topalias/\n",
-    )
     click.echo("Update command:\npip3 install -U --user topalias")
     ctx.exit()
 
@@ -138,12 +135,6 @@ def main(ctx) -> int:
 def version(ctx) -> None:
     """Get program current and available version."""
     print_version(ctx, ver=True)
-
-
-@cli.command()
-def example() -> None:
-    """Give dynamic .bash_aliases example from GitHub."""
-    click.echo(get_examples())
 
 
 @cli.command(name="history")
