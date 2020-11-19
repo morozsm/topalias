@@ -6,7 +6,7 @@ import sys
 
 import aliascore as core
 import click
-from __init__ import __version__, get_version
+from __init__ import __version__, get_examples, get_version
 
 
 class AliasedGroup(click.Group):
@@ -20,12 +20,13 @@ class AliasedGroup(click.Group):
         return super().get_command(ctx, cmd_name)
 
 
-def print_version(ctx, param, value):
-    if not value or ctx.resilient_parsing:
+def print_version(ctx, ver):
+    """Print current program version and check available online"""
+    if not ver or ctx.resilient_parsing:
         return
     click.echo(f"topalias utility version: {__version__}")
     click.echo(
-        f"Latest release: {get_version()} on https://pypi.org/project/topalias/\n"
+        f"Latest release: {get_version()} on https://pypi.org/project/topalias/\n",
     )
     click.echo("Update command:\npip3 install -U --user topalias")
     ctx.exit()
@@ -47,9 +48,25 @@ def print_version(ctx, param, value):
 @click.option(
     "--count",
     "-c",
-    default=20,
+    default=20,  # noqa: WPS432
     type=int,
     help="Print specified number acronym suggestions. Default: 20",
+)
+@click.option(
+    "--filter",
+    "filtering",
+    default=False,
+    is_flag=True,
+    type=bool,
+    help="Filter used aliases in history. Default: False",
+)
+@click.option(
+    "--zsh",
+    "-z",
+    default=False,
+    is_flag=True,
+    type=bool,
+    help="Use zsh shell history file .zsh_history. Default: False",
 )
 @click.option(
     "--path",
@@ -63,7 +80,7 @@ def print_version(ctx, param, value):
     callback=print_version,
     expose_value=False,
     is_eager=True,
-    help="Print current program version and check latest on pypi.org.",
+    help="Print current program version and check latest on pypi.org.",  # pylint: disable=too-many-arguments
 )
 @click.option(
     "--debug/--no-debug",
@@ -71,18 +88,23 @@ def print_version(ctx, param, value):
     help="Enable debug strings in output.",
 )
 @click.pass_context
-def cli(ctx, debug, acr, path, count) -> int:
+def cli(ctx, debug, acr, path, count, filtering, zsh) -> int:  # noqa: WPS211,WPS216
     """See documentation and usage examples: https://csredrat.github.io/topalias"""
 
     ctx.ensure_object(dict)
-    ctx.obj["DEBUG"] = core.debug = debug
+    ctx.obj["DEBUG"] = core.DEBUG = debug
     ctx.obj["acronym_minimal_length"] = acr
     ctx.obj["suggestion_count"] = count
-    core.suggestion_count = ctx.obj["suggestion_count"]
+    core.SUGGESTION_COUNT = ctx.obj["suggestion_count"]
 
     if path is not None:
-        print(path)
         core.path.insert(0, path)
+
+    if filtering:
+        core.ALIASES_FILTER = filtering
+
+    if zsh:
+        core.HISTORY_FILE = ".zsh_history"
 
     if debug:
         click.echo("Debug mode is ON")
@@ -104,25 +126,30 @@ def main(ctx) -> int:
         click.echo(ctx.obj)
 
     if core.find_aliases():
-        # core.top_alias()
+        core.collect_alias()
         ctx.forward(top_history)  # pylint: disable=no-value-for-parameter
     else:
         ctx.forward(top_history)  # pylint: disable=no-value-for-parameter
     return 0
 
 
-@click.command()
-def version() -> None:
-    print_version()
+@cli.command()
+@click.pass_context
+def version(ctx) -> None:
+    """Get program current and available version."""
+    print_version(ctx, ver=True)
+
+
+@cli.command()
+def example() -> None:
+    """Give dynamic .bash_aliases example from GitHub."""
+    click.echo(get_examples())
 
 
 @cli.command(name="history")
 @click.pass_context
 def top_history(ctx) -> None:
     """Print bash history file."""
-    if ctx.obj["DEBUG"]:
-        click.echo(ctx.obj)
-
     acronym_minimal_length = ctx.obj["acronym_minimal_length"]
 
     if acronym_minimal_length is None:
@@ -138,4 +165,4 @@ ALIASES = {  # noqa: WPS407, need frozendict
 }
 
 if __name__ == "__main__":
-    sys.exit(cli(obj={}))  # pragma: no cover # pylint: disable=no-value-for-parameter
+    sys.exit(cli())  # pragma: no cover # pylint: disable=no-value-for-parameter

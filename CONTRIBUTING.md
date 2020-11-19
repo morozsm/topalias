@@ -92,17 +92,6 @@ Keep in mind: default virtual environment folder excluded by flake8 style checki
 If you want to customize this parameter, you should do this in `setup.cfg`.
 These steps are mandatory during the CI.
 
-## Type checks
-
-We use `mypy` to run type checks on our code.
-To use it:
-
-```bash
-mypy topalias tests/**/*.py
-```
-
-This step is mandatory during the CI.
-
 ## Submitting your code
 
 We use [trunk based](https://trunkbaseddevelopment.com/)
@@ -133,9 +122,8 @@ Before submitting your code please do the following steps:
 4. Edit documentation if you have changed something significant
 5. Update `CHANGELOG.md` with a quick summary of your changes
 6. Run `pytest` again to make sure it is still working
-7. Run `mypy` to ensure that types are correct
-8. Run `flake8` to ensure that style is correct
-9. Run `doc8` to ensure that docs are correct
+7. Run `flake8` to ensure that style is correct
+8. Run `doc8` to ensure that docs are correct
 
 ## Get Started!
 
@@ -144,17 +132,17 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 1. Fork the `topalias` repo on GitHub.
 2. Clone your fork locally::
 
-    \$ git clone git@github.com:your_name_here/topalias.git
+    $ git clone git@github.com:your_name_here/topalias.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv topalias
     $ cd topalias/
-    \$ python setup.py develop
+    $ python setup.py develop
 
 4. Create a branch for local development::
 
-    \$ git checkout -b name-of-your-bugfix-or-feature
+    $ git checkout -b name-of-your-bugfix-or-feature
 
     Now you can make your changes locally.
 
@@ -163,7 +151,7 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 
     $ flake8 topalias tests
     $ python setup.py test or pytest
-    \$ tox
+    $ tox
 
     To get flake8 and tox, just pip install them into your virtualenv.
 
@@ -171,7 +159,7 @@ Ready to contribute? Here's how to set up `topalias` for local development.
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
-    \$ git push origin name-of-your-bugfix-or-feature
+    $ git push origin name-of-your-bugfix-or-feature
 
 7. Submit a pull request through the GitHub website.
 
@@ -210,7 +198,7 @@ A reminder for the maintainers on how to deploy.
 Make sure all your changes are committed (including an entry in CHANGELOG.md).
 Then run::
 
-    $ bump2version patch # possible: major / minor / patch
+    $ bump2version patch  # possible: major / minor / patch
     $ git push
     $ git push --tags
 
