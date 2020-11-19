@@ -56,12 +56,12 @@ jobs:
                     echo "Project development history"
                     curl https://github.com/CSRedRat/topalias/wiki/Development | html2text
                     python -m topalias
-            -   name: Publish distribution 📦 to PyPI
-                if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-                uses: pypa/gh-action-pypi-publish@master
-                with:
-                    user: __token__
-                    password: ${{ secrets.pypi_password }}
+#            -   name: Publish distribution 📦 to PyPI
+#                if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+#                uses: pypa/gh-action-pypi-publish@master
+#                with:
+#                    user: __token__
+#                    password: ${{ secrets.pypi_password }}
 
 #    - name: Build and publish with Twine or use GitHub Action (with workflow example): https://github.com/marketplace/actions/py-package-publish
 #      env:

@@ -60,7 +60,7 @@ publish_pypi:
     only:
         - tags
         - /^v.*$/
-    when: manual
+#    when: manual
 
 publish_gitlab:
     stage: artifact
