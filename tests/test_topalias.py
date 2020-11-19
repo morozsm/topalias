@@ -51,7 +51,7 @@ def test_command_line_interface():
     assert "Run after add alias: " in history_output.output
     help_result = runner.invoke(cli.cli, ["--debug", "--help"])
     assert "-h, --help            Show this message and exit." in help_result.output
-    help_result = runner.invoke(cli.cli, ["-z"])
-    assert ".zshrc" in help_result.output
+    help_result = runner.invoke(cli.cli, ["-f 'topalias/data' --debug -z"])
+    assert "zsh" in help_result.output
     help_result = runner.invoke(cli.cli, ["version"])
     assert "topalias utility version" in help_result.output

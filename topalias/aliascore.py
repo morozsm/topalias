@@ -14,7 +14,8 @@ NOTHING = "Empty"
 
 DEBUG = False
 HOME = os.path.expanduser("~")
-path = [".", HOME]
+CURRENT = os.path.expanduser(".")
+path = [CURRENT, HOME]
 SUGGESTION_COUNT = 20
 ALIASES_FILTER = False
 HISTORY_FILE = ".bash_history"
@@ -36,12 +37,17 @@ def find_first(filename: str, paths: list) -> str:  # type: ignore
     """
     for directory in paths:
         full_path = os.path.join(directory, filename)
+        logging.debug(
+            "Full path and file check: %s, %s",
+            full_path,
+            os.path.isfile(full_path),
+        )
         if os.path.isfile(full_path):
             return full_path
     return NOTHING
 
 
-def find_history() -> str:
+def find_history() -> str:  # pylint: disable=inconsistent-return-statements
     """Find command history file"""
     history_path = find_first(HISTORY_FILE, path)
     if history_path != NOTHING:
@@ -49,24 +55,26 @@ def find_history() -> str:
         return history_path
     print("File {} not found in any of the directories".format(HISTORY_FILE))
     file_dir = os.path.dirname(os.path.realpath(__file__))
-    if HISTORY_FILE == ".zsh_history":
-        data_path = os.path.join(file_dir, r"data/.zsh_history")
-    else:
-        data_path = os.path.join(file_dir, r"data/.bash_history")
-    logging.debug("History file: %s", data_path)
-    return data_path  # noqa: WPS331
+    if DEBUG:
+        if HISTORY_FILE == ".zsh_history":
+            data_path = os.path.join(file_dir, r"data/.zsh_history")
+        else:
+            data_path = os.path.join(file_dir, r"data/.bash_history")
+        logging.debug("History file: %s", data_path)
+        return data_path  # noqa: WPS331
 
 
-def find_aliases() -> str:
+def find_aliases() -> str:  # pylint: disable=inconsistent-return-statements
     """Find defined aliases file for shell"""
     aliases_name = ".bash_aliases"
     aliases_path = find_first(aliases_name, path)
     if aliases_path != NOTHING:
         return aliases_path
-    print("File {} not found in any of the directories".format(aliases_name))
-    file_dir = os.path.dirname(os.path.realpath(__file__))
-    data_path = os.path.join(file_dir, r"data/.bash_aliases")
-    return data_path  # noqa: WPS331
+    print("File {} not found in any of the directories ".format(aliases_name))
+    if DEBUG:
+        file_dir = os.path.dirname(os.path.realpath(__file__))
+        data_path = os.path.join(file_dir, r"data/.bash_aliases")
+        return data_path  # noqa: WPS331
 
 
 used_alias = []
@@ -74,14 +82,20 @@ used_alias = []
 
 def collect_alias():
     """Top used aliases"""
-
-    with open(find_aliases(), "r", encoding="utf-8") as aliases_data:
-        for line in aliases_data:
-            if not line.startswith("#", 0, 1) or line:
-                s = line.rstrip()
-                alias_name = list(s.split(" "))
-                if alias_name[0] == "alias":
-                    used_alias.append(alias_name[1].split("=")[0])
+    try:
+        with open(find_aliases(), "r", encoding="utf-8") as aliases_data:
+            for line in aliases_data:
+                if not line.startswith("#", 0, 1) or line:
+                    s = line.rstrip()
+                    alias_name = list(s.split(" "))
+                    if alias_name[0] == "alias":
+                        used_alias.append(alias_name[1].split("=")[0])
+    except FileNotFoundError:
+        print("Try: topalias -f /path/to/home/folder/with/history")
+        print(
+            "Collect debug info with --debug flag and add issue: https://github.com/CSRedRat/topalias/issue",
+        )
+        print("Try: topalias history")
 
 
 acronyminator = re.compile(r"(?:(?<=\s)|^)(?:[a-z]|\d+)")
@@ -166,31 +180,38 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
     history_file_path = find_history()
-    with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
-        history_data_encoded = io.TextIOWrapper(history_data, encoding="UTF-8")
-        for line in history_data_encoded:
-            if HISTORY_FILE == ".bash_history":
-                if (not line.startswith("#", 0, 1)) and line != "":
-                    clear_line = line.rstrip()
-                    if filtering and clear_line:
-                        first_word_in_command = clear_line.split()[0]
-                        if first_word_in_command not in used_alias:
+    try:
+        with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
+            history_data_encoded = io.TextIOWrapper(history_data, encoding="UTF-8")
+            for line in history_data_encoded:
+                if HISTORY_FILE == ".bash_history":
+                    if (not line.startswith("#", 0, 1)) and line != "":
+                        clear_line = line.rstrip()
+                        if filtering and clear_line:
+                            first_word_in_command = clear_line.split()[0]
+                            if first_word_in_command not in used_alias:
+                                command_bank.append(clear_line)
+                        elif clear_line:
                             command_bank.append(clear_line)
-                    elif clear_line:
-                        command_bank.append(clear_line)
-            else:
-                try:
-                    clear_line = line.split(";")[1].rstrip()
-                    if filtering and clear_line:
-                        first_word_in_command = clear_line.split()[0]
-                        if first_word_in_command not in used_alias:
+                else:
+                    try:  # noqa: WPS505
+                        clear_line = line.split(";")[1].rstrip()
+                        if filtering and clear_line:
+                            first_word_in_command = clear_line.split()[0]
+                            if first_word_in_command not in used_alias:
+                                command_bank.append(clear_line)
+                        elif clear_line:
                             command_bank.append(clear_line)
-                    elif clear_line:
-                        command_bank.append(clear_line)
-                except IndexError:
-                    print(
-                        "Multiline command in history will be supported in next release",
-                    )
+                    except IndexError:
+                        print(
+                            "Multiline command in history will be supported in next release",
+                        )
+    except FileNotFoundError:
+        print("Try: topalias -f /path/to/home/folder/with/history")
+        print(
+            "Collect debug info with --debug flag and add issue: https://github.com/CSRedRat/topalias/issue",
+        )
+        print("Try: topalias history")
 
     return command_bank
 
