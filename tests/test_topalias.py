@@ -36,12 +36,22 @@ def test_welcome(capsys, message: str, expected: str):
     assert out == expected, err == ""
 
 
+def test_print_hint(capsys):
+    """Test hints"""
+    aliascore.print_hint()
+    captured = capsys.readouterr()
+    assert "Hint: " in captured.out
+
+
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    history_output = runner.invoke(cli.cli, ["history"])
+    history_output = runner.invoke(cli.cli, ["h"])
     assert history_output.exit_code == 0
     assert "Run after add alias: " in history_output.output
     help_result = runner.invoke(cli.cli, ["--debug", "--help"])
-    assert help_result.exit_code == 0
     assert "-h, --help            Show this message and exit." in help_result.output
+    help_result = runner.invoke(cli.cli, ["-z"])
+    assert ".zshrc" in help_result.output
+    help_result = runner.invoke(cli.cli, ["version"])
+    assert "topalias utility version" in help_result.output
