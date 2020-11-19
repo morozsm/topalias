@@ -47,11 +47,11 @@ def find_history() -> str:
         logging.debug("History file: %s", history_path)
         return history_path
     print("File {} not found in any of the directories".format(HISTORY_FILE))
-    file_dir = os.path.dirname(os.path.realpath("__file__"))
+    file_dir = os.path.dirname(os.path.realpath(__file__))
     if HISTORY_FILE == ".zsh_history":
-        data_path = os.path.join(file_dir, r"topalias/data/.zsh_history")
+        data_path = os.path.join(file_dir, r"data/.zsh_history")
     else:
-        data_path = os.path.join(file_dir, r"topalias/data/.bash_history")
+        data_path = os.path.join(file_dir, r"data/.bash_history")
     logging.debug("History file: %s", data_path)
     return data_path  # noqa: WPS331
 
@@ -161,10 +161,14 @@ def print_hint() -> None:
     print(random.choice(hint_bank))
 
 
-def load_command_bank(filtering=False):
+def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
-    with open(find_history(), "r", encoding="utf-8") as history_data:
+    if HISTORY_FILE == ".zsh_history":
+        file_history_encoding = "unicode_escape"
+    else:
+        file_history_encoding = "utf-8"
+    with open(find_history(), "r", encoding=file_history_encoding) as history_data:
         for line in history_data:
             if HISTORY_FILE == ".bash_history":
                 if (not line.startswith("#", 0, 1)) and line != "":
@@ -176,13 +180,19 @@ def load_command_bank(filtering=False):
                     elif clear_line:
                         command_bank.append(clear_line)
             else:
-                clear_line = line.split(";")[1].rstrip()
-                if filtering and clear_line:
-                    first_word_in_command = clear_line.split()[0]
-                    if first_word_in_command not in used_alias:
+                try:
+                    clear_line = line.split(";")[1].rstrip()
+                    if filtering and clear_line:
+                        first_word_in_command = clear_line.split()[0]
+                        if first_word_in_command not in used_alias:
+                            command_bank.append(clear_line)
+                    elif clear_line:
                         command_bank.append(clear_line)
-                elif clear_line:
-                    command_bank.append(clear_line)
+                except IndexError:
+                    print(
+                        "Multiline command in history will be supported in next release",
+                    )
+
     return command_bank
 
 
