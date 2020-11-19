@@ -13,6 +13,8 @@ with open("CHANGELOG.md") as history_file:
 
 requirements = [
     "Click>=7.0",
+    "requests",
+    "packaging",
 ]
 
 setup_requirements = [
