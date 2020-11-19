@@ -11,12 +11,14 @@ pip3 install -r requirements.txt
 ```
 
 Add git hooks:
+
 ```bash
 pre-commit install -t pre-commit
 pre-commit install -t pre-push
 ```
 
 If you use conda:
+
 ```bash
 conda install --yes --file requirements-dev.txt
 conda install --yes --file requirements.txt
@@ -49,7 +51,6 @@ pipenv run pre-commit install -t pre-commit
 pipenv run pre-commit install -t pre-push
 ```
 
-
 ## Local package build
 
 Install from sources:
@@ -66,11 +67,9 @@ python3 setup.py sdist bdist_wheel
 #twine upload -r testpypi dist/* # upload package to test.pypi.org
 ```
 
-
 ## One magic command
 
 Run `make test` to run everything we have!
-
 
 ## Tests
 
@@ -88,10 +87,10 @@ To run linting:
 ```bash
 flake8 .
 ```
+
 Keep in mind: default virtual environment folder excluded by flake8 style checking is `.venv`.
 If you want to customize this parameter, you should do this in `setup.cfg`.
 These steps are mandatory during the CI.
-
 
 ## Submitting your code
 
@@ -151,7 +150,7 @@ python setup.py develop
 git checkout -b name-of-your-bugfix-or-feature
 ```
 
-   Now you can make your changes locally.
+Now you can make your changes locally.
 
 5. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
@@ -162,7 +161,7 @@ python setup.py test or pytest
 tox
 ```
 
-   To get flake8 and tox, just pip install them into your virtualenv.
+To get flake8 and tox, just pip install them into your virtualenv.
 
 6. Commit your changes and push your branch to GitHub::
 
