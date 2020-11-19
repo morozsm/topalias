@@ -164,11 +164,16 @@ def print_hint() -> None:
 def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
+    history_file_path = find_history()
     if HISTORY_FILE == ".zsh_history":
         file_history_encoding = "unicode_escape"
     else:
         file_history_encoding = "utf-8"
-    with open(find_history(), "r", encoding=file_history_encoding) as history_data:
+    with open(
+        r"{}".format(history_file_path),
+        "r",
+        encoding=file_history_encoding,
+    ) as history_data:
         for line in history_data:
             if HISTORY_FILE == ".bash_history":
                 if (not line.startswith("#", 0, 1)) and line != "":
