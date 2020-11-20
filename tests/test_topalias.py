@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """Tests for `topalias` package."""
 
+import importlib
 import subprocess
 import sys
-import importlib
+
 import pytest
 import requests
 from bs4 import BeautifulSoup
