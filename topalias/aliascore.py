@@ -237,7 +237,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                         multiline_buffer.append(line.strip())
                     # Check if we have multiline in buffer
                     if multiline_buffer:
-                        line = " ".join(multiline_buffer)  # noqa WPS440
+                        line = " ".join(multiline_buffer)  # noqa: WPS440
                         multiline_buffer = []
                     if process_zsh_line(line, filtering):
                         command_bank.append(process_zsh_line(line, filtering))
