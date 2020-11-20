@@ -184,8 +184,7 @@ def process_bash_line(line: str, filtering: bool = False):
             first_word_in_command = clear_line.split()[0]
             if first_word_in_command not in used_alias:
                 return clear_line
-            else:
-                return None
+            return None
         elif clear_line:
             return clear_line
     return None
@@ -224,12 +223,12 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                 else:
                     # Multiline handler
                     # First line of multiline ends with '\'
-                    if line.strip().endswith("\\") and len(multiline_buffer) == 0:
+                    if line.strip().endswith("\\") and not multiline_buffer:
                         multiline_buffer.append(line.strip()[:-1])
 
                         continue
                     # Next line of multiline
-                    if not line.startswith(":") and len(multiline_buffer) > 0:
+                    if not line.startswith(":") and multiline_buffer:
                         # If not last line in multiline
                         if line.strip().endswith("\\"):
                             multiline_buffer.append(line.strip()[:-1])
@@ -237,7 +236,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                         # If last line in multiline
                         multiline_buffer.append(line.strip())
                     # Check if we have multiline in buffer
-                    if len(multiline_buffer) > 0:
+                    if multiline_buffer:
                         line = " ".join(multiline_buffer)
                         multiline_buffer = []
                     if process_zsh_line(line, filtering):
