@@ -3,6 +3,7 @@
 
 import subprocess
 import sys
+import importlib
 import pytest
 import requests
 from bs4 import BeautifulSoup
@@ -61,9 +62,10 @@ def test_command_line_interface():
 
 def test_load_command_bank():
     """ Test core load_command_bank() """
+    cli_path = importlib.util.find_spec("cli").origin
     assert "Multiline" in subprocess.check_output(
-        sys.executable + f" {cli.__file__} -f 'topalias/data' --debug -z", shell=True
+        sys.executable + f" {cli_path} -f 'topalias/data' --debug -z", shell=True
     ).decode("UTF-8")
     assert "Multiline" not in subprocess.check_output(
-        sys.executable + f" {cli.__file__} -f 'topalias/data' -z", shell=True
+        sys.executable + f" {cli_path} -f 'topalias/data' -z", shell=True
     ).decode("UTF-8")
