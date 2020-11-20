@@ -183,8 +183,7 @@ def process_bash_line(line: str, filtering: bool = False):
             if first_word_in_command not in used_alias:
                 return clear_line
             return None
-        elif clear_line:
-            return clear_line
+        return clear_line if clear_line else None
     return None
 
 
