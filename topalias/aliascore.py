@@ -183,7 +183,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     try:
         with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
             history_data_encoded = io.TextIOWrapper(
-                history_data, encoding="UTF-8", errors="ignore"
+                history_data, encoding="UTF-8", errors="ignore",
             )
             for line in history_data_encoded:
                 if HISTORY_FILE == ".bash_history":
