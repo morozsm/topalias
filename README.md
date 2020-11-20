@@ -103,13 +103,13 @@ Please add you feature requests: [https://github.com/CSRedRat/topalias/issues/ne
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://metin2wiki.ru/"><img src="https://avatars1.githubusercontent.com/u/1287586?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sergey Chudakov</b></sub></a><br /><a href="https://github.com/CSRedRat/topalias/commits?author=CSRedRat" title="Code">💻</a> <a href="#infra-CSRedRat" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-CSRedRat" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-CSRedRat" title="Maintenance">🚧</a> <a href="#platform-CSRedRat" title="Packaging/porting to new platform">📦</a> <a href="#mentoring-CSRedRat" title="Mentoring">🧑‍🏫</a> <a href="#example-CSRedRat" title="Examples">💡</a></td>
+    <td align="center"><a href="https://metin2wiki.ru/"><img src="https://avatars1.githubusercontent.com/u/1287586?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sergey Chudakov</b></sub></a><br /><a href="https://github.com/CSRedRat/topalias/commits?author=CSRedRat" title="Code">💻</a> <a href="#infra-CSRedRat" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-CSRedRat" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-CSRedRat" title="Maintenance">🚧</a> <a href="#platform-CSRedRat" title="Packaging/porting to new platform">📦</a></td>
+    <td align="center"><a href="https://github.com/morozsm"><img src="https://avatars2.githubusercontent.com/u/4393731?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sergey Morozik</b></sub></a><br /><a href="https://github.com/CSRedRat/topalias/commits?author=morozsm" title="Code">💻</a></td>
   </tr>
 </table>
 

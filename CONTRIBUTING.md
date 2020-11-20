@@ -218,5 +218,7 @@ Travis will then deploy to PyPI if tests pass.
 
 ## Add to contributors
 
+cli version: [https://allcontributors.org/docs/en/cli/installation](https://allcontributors.org/docs/en/cli/installation)
+
 Comment on an issue or pull request with:
 @all-contributors please add @CSRedRat for code, infra, tests, ideas, maintenance, platform, mentoring and example ✨

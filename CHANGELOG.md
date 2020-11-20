@@ -2,6 +2,11 @@
 
 We follow [Semantic Versions](https://semver.org/).
 
+## Version 2.0.13
+
+-   Fix encoding issue with zsh history file ([#13](https://github.com/CSRedRat/topalias/issues/13), [#17](https://github.com/CSRedRat/topalias/issues/17))
+-   Fix .bash_aliases path definition ([#16](https://github.com/CSRedRat/topalias/issues/16))
+
 ## Version 2.0.0
 
 -   Add zsh shell support (-z/--zsh flag)
