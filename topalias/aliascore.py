@@ -176,10 +176,38 @@ def print_hint() -> None:
     print(random.choice(hint_bank))
 
 
+def process_bash_line(line: str, filtering: bool = False):
+    """ Process bash history line """
+    if (not line.startswith("#", 0, 1)) and line != "":
+        clear_line = line.rstrip()
+        if filtering and clear_line:
+            first_word_in_command = clear_line.split()[0]
+            if first_word_in_command not in used_alias:
+                return clear_line
+            else:
+                return None
+        elif clear_line:
+            return clear_line
+    return None
+
+
+def process_zsh_line(line: str, filtering: bool = False):
+    """ Process zsh history line"""
+    clear_line = line.split(";")[1].rstrip()
+    if filtering and clear_line:
+        first_word_in_command = clear_line.split()[0]
+        if first_word_in_command not in used_alias:
+            return clear_line
+    elif clear_line:
+        return clear_line
+    return None
+
+
 def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
     history_file_path = find_history()
+    multiline_buffer = []
     try:
         with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
             history_data_encoded = io.TextIOWrapper(
@@ -189,28 +217,34 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
             )
             for line in history_data_encoded:
                 if HISTORY_FILE == ".bash_history":
-                    if (not line.startswith("#", 0, 1)) and line != "":
-                        clear_line = line.rstrip()
-                        if filtering and clear_line:
-                            first_word_in_command = clear_line.split()[0]
-                            if first_word_in_command not in used_alias:
-                                command_bank.append(clear_line)
-                        elif clear_line:
-                            command_bank.append(clear_line)
+                    if process_bash_line(line, filtering):
+                        command_bank.append(process_bash_line(line, filtering))
+                    else:
+                        continue
                 else:
-                    try:  # noqa: WPS505
-                        clear_line = line.split(";")[1].rstrip()
-                        if filtering and clear_line:
-                            first_word_in_command = clear_line.split()[0]
-                            if first_word_in_command not in used_alias:
-                                command_bank.append(clear_line)
-                        elif clear_line:
-                            command_bank.append(clear_line)
-                    except IndexError:
-                        if DEBUG:
-                            print(
-                                "Multiline command in history will be supported in next release",
-                            )
+                    # Multiline handler
+                    # First line of multiline ends with '\'
+                    if line.strip().endswith("\\") and len(multiline_buffer) == 0:
+                        multiline_buffer.append(line.strip()[:-1])
+
+                        continue
+                    # Next line of multiline
+                    if not line.startswith(":") and len(multiline_buffer) > 0:
+                        # If not last line in multiline
+                        if line.strip().endswith("\\"):
+                            multiline_buffer.append(line.strip()[:-1])
+                            continue
+                        # If last line in multiline
+                        multiline_buffer.append(line.strip())
+                    # Check if we have multiline in buffer
+                    if len(multiline_buffer) > 0:
+                        line = " ".join(multiline_buffer)
+                        multiline_buffer = []
+                    if process_zsh_line(line, filtering):
+                        command_bank.append(process_zsh_line(line, filtering))
+                    else:
+                        continue
+
     except FileNotFoundError:
         print("Try: topalias -f /path/to/home/folder/with/history")
         print(
