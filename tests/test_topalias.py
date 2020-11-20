@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tests for `topalias` package."""
 
+import subprocess
+import sys
+import importlib
 import pytest
 import requests
 from bs4 import BeautifulSoup
@@ -55,3 +58,22 @@ def test_command_line_interface():
     assert "zsh" in help_result.output
     help_result = runner.invoke(cli.cli, ["version"])
     assert "topalias utility version" in help_result.output
+
+
+def test_load_command_bank():
+    """ Test core load_command_bank() """
+    cli_path = importlib.util.find_spec("cli").origin
+    assert (
+        "Multiline"
+        in subprocess.check_output(
+            sys.executable + f" {cli_path} -f 'topalias/data' --debug -z",
+            shell=True,
+        ).decode("UTF-8")
+    )
+    assert (
+        "Multiline"
+        not in subprocess.check_output(
+            sys.executable + f" {cli_path} -f 'topalias/data' -z",
+            shell=True,
+        ).decode("UTF-8")
+    )

@@ -207,9 +207,10 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                         elif clear_line:
                             command_bank.append(clear_line)
                     except IndexError:
-                        print(
-                            "Multiline command in history will be supported in next release",
-                        )
+                        if DEBUG:
+                            print(
+                                "Multiline command in history will be supported in next release",
+                            )
     except FileNotFoundError:
         print("Try: topalias -f /path/to/home/folder/with/history")
         print(
