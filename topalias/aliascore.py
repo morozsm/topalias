@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Main module. Not for executing, only library. Run project from cli.py"""
-# noqa: WPS202
 import io
 import logging
 import os
@@ -61,7 +60,7 @@ def find_history() -> str:  # pylint: disable=inconsistent-return-statements
         else:
             data_path = os.path.join(file_dir, r"data/.bash_history")
         logging.debug("History file: %s", data_path)
-        return data_path  # noqa: WPS331
+        return data_path
 
 
 def find_aliases() -> str:  # pylint: disable=inconsistent-return-statements
@@ -73,8 +72,7 @@ def find_aliases() -> str:  # pylint: disable=inconsistent-return-statements
     print("File {} not found in any of the directories ".format(aliases_name))
     if DEBUG:
         file_dir = os.path.dirname(os.path.realpath(__file__))
-        data_path = os.path.join(file_dir, r"data/.bash_aliases")
-        return data_path  # noqa: WPS331
+        return os.path.join(file_dir, r"data/.bash_aliases")
 
 
 used_alias = []
@@ -130,7 +128,7 @@ def print_stat(raw_lines, filtered) -> None:
         top_utils_text_line += "{}: {}, ".format(
             paired_rank[0],
             paired_rank[1],
-        )  # noqa: WPS441
+        )
     top_utils_text_line = top_utils_text_line[:-2]
     print(
         "\ncommands in history: {}, unique commands: {}, filtered by length: {}\n".format(
@@ -147,7 +145,7 @@ def print_stat(raw_lines, filtered) -> None:
             top_aliases_text_line += "{}: {}, ".format(
                 paired_rank[0],
                 paired_rank[1],
-            )  # noqa: WPS441
+            )
         top_aliases_text_line = top_aliases_text_line[:-2]
         if top_aliases:
             print(" most used aliases: {}".format(top_aliases_text_line))
@@ -215,7 +213,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                 errors="ignore",
             )
             for line in history_data_encoded:
-                if HISTORY_FILE == ".bash_history":     # noqa: WPS223
+                if HISTORY_FILE == ".bash_history":  # noqa: WPS223
                     if process_bash_line(line, filtering):
                         command_bank.append(process_bash_line(line, filtering))
                 else:
@@ -250,7 +248,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     return command_bank
 
 
-def print_history(acronym_length) -> None:  # noqa: WPS210
+def print_history(acronym_length) -> None:
     """Main function for print top commands and suggestions aliases"""
     if DEBUG:
         logging.getLogger().setLevel(logging.DEBUG)
