@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Main module. Not for executing, only library. Run project from cli.py"""
-
+# noqa: WPS202
 import io
 import logging
 import os
@@ -218,14 +218,12 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                 if HISTORY_FILE == ".bash_history":
                     if process_bash_line(line, filtering):
                         command_bank.append(process_bash_line(line, filtering))
-                    else:
-                        continue
                 else:
+                    # ZSH processing
                     # Multiline handler
                     # First line of multiline ends with '\'
                     if line.strip().endswith("\\") and not multiline_buffer:
                         multiline_buffer.append(line.strip()[:-1])
-
                         continue
                     # Next line of multiline
                     if not line.startswith(":") and multiline_buffer:
