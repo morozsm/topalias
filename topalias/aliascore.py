@@ -8,7 +8,7 @@ import random
 import re
 import sys
 
-from statistic import most_used_utils, top_command
+from topalias.statistic import most_used_utils, top_command
 
 NOTHING = "Empty"
 
@@ -215,7 +215,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                 errors="ignore",
             )
             for line in history_data_encoded:
-                if HISTORY_FILE == ".bash_history":
+                if HISTORY_FILE == ".bash_history":     # noqa: WPS223
                     if process_bash_line(line, filtering):
                         command_bank.append(process_bash_line(line, filtering))
                 else:
