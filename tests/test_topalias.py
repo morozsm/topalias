@@ -4,6 +4,7 @@
 import importlib
 import subprocess
 import sys
+from topalias.aliascore import process_bash_line, process_zsh_line
 
 import pytest
 import requests
@@ -66,15 +67,22 @@ def test_load_command_bank():
     cli_path = importlib.util.find_spec("cli").origin
     assert (
         "Multiline"
-        in subprocess.check_output(
-            sys.executable + f" {cli_path} -f 'topalias/data' --debug -z",
-            shell=True,
-        ).decode("UTF-8")
-    )
-    assert (
-        "Multiline"
         not in subprocess.check_output(
             sys.executable + f" {cli_path} -f 'topalias/data' -z",
             shell=True,
         ).decode("UTF-8")
     )
+
+
+def test_process_bash_line():
+    """ test process_bash_line """
+    line1 = "#1602983983"
+    line2 = "sudo chown -R csredrat:csredrat ."
+    assert process_bash_line(line1) is None
+    assert process_bash_line(line2) == line2
+
+
+def test_process_zsh_line():
+    """ test process_zsh_line """
+    line1 = ": 1605767719:0;pip3 install -U --user topalias"
+    assert process_zsh_line(line1) == "pip3 install -U --user topalias"

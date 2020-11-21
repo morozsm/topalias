@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Main module. Not for executing, only library. Run project from cli.py"""
-
 import io
 import logging
 import os
@@ -54,14 +53,14 @@ def find_history() -> str:  # pylint: disable=inconsistent-return-statements
         logging.debug("History file: %s", history_path)
         return history_path
     print("File {} not found in any of the directories".format(HISTORY_FILE))
-    file_dir = os.path.dirname(os.path.realpath(__file__))
     if DEBUG:
+        file_dir = os.path.dirname(os.path.realpath(__file__))
         if HISTORY_FILE == ".zsh_history":
             data_path = os.path.join(file_dir, r"data/.zsh_history")
         else:
             data_path = os.path.join(file_dir, r"data/.bash_history")
         logging.debug("History file: %s", data_path)
-        return data_path  # noqa: WPS331
+        return data_path
 
 
 def find_aliases() -> str:  # pylint: disable=inconsistent-return-statements
@@ -73,8 +72,7 @@ def find_aliases() -> str:  # pylint: disable=inconsistent-return-statements
     print("File {} not found in any of the directories ".format(aliases_name))
     if DEBUG:
         file_dir = os.path.dirname(os.path.realpath(__file__))
-        data_path = os.path.join(file_dir, r"data/.bash_aliases")
-        return data_path  # noqa: WPS331
+        return os.path.join(file_dir, r"data/.bash_aliases")
 
 
 used_alias = []
@@ -130,7 +128,7 @@ def print_stat(raw_lines, filtered) -> None:
         top_utils_text_line += "{}: {}, ".format(
             paired_rank[0],
             paired_rank[1],
-        )  # noqa: WPS441
+        )
     top_utils_text_line = top_utils_text_line[:-2]
     print(
         "\ncommands in history: {}, unique commands: {}, filtered by length: {}\n".format(
@@ -147,7 +145,7 @@ def print_stat(raw_lines, filtered) -> None:
             top_aliases_text_line += "{}: {}, ".format(
                 paired_rank[0],
                 paired_rank[1],
-            )  # noqa: WPS441
+            )
         top_aliases_text_line = top_aliases_text_line[:-2]
         if top_aliases:
             print(" most used aliases: {}".format(top_aliases_text_line))
@@ -176,10 +174,36 @@ def print_hint() -> None:
     print(random.choice(hint_bank))
 
 
+def process_bash_line(line: str, filtering: bool = False):
+    """ Process bash history line """
+    if (not line.startswith("#", 0, 1)) and line != "":
+        clear_line = line.rstrip()
+        if filtering and clear_line:
+            first_word_in_command = clear_line.split()[0]
+            if first_word_in_command not in used_alias:
+                return clear_line
+            return None
+        return clear_line or None
+    return None
+
+
+def process_zsh_line(line: str, filtering: bool = False):
+    """ Process zsh history line"""
+    clear_line = line.split(";")[1].rstrip()
+    if filtering and clear_line:
+        first_word_in_command = clear_line.split()[0]
+        if first_word_in_command not in used_alias:
+            return clear_line
+    elif clear_line:
+        return clear_line
+    return None
+
+
 def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     """Read and parse shell command history file"""
     command_bank = []
     history_file_path = find_history()
+    multiline_buffer = []
     try:
         with io.FileIO(r"{}".format(history_file_path), "r") as history_data:
             history_data_encoded = io.TextIOWrapper(
@@ -188,29 +212,31 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
                 errors="ignore",
             )
             for line in history_data_encoded:
-                if HISTORY_FILE == ".bash_history":
-                    if (not line.startswith("#", 0, 1)) and line != "":
-                        clear_line = line.rstrip()
-                        if filtering and clear_line:
-                            first_word_in_command = clear_line.split()[0]
-                            if first_word_in_command not in used_alias:
-                                command_bank.append(clear_line)
-                        elif clear_line:
-                            command_bank.append(clear_line)
+                if HISTORY_FILE == ".bash_history":  # noqa: WPS223
+                    if process_bash_line(line, filtering):
+                        command_bank.append(process_bash_line(line, filtering))
                 else:
-                    try:  # noqa: WPS505
-                        clear_line = line.split(";")[1].rstrip()
-                        if filtering and clear_line:
-                            first_word_in_command = clear_line.split()[0]
-                            if first_word_in_command not in used_alias:
-                                command_bank.append(clear_line)
-                        elif clear_line:
-                            command_bank.append(clear_line)
-                    except IndexError:
-                        if DEBUG:
-                            print(
-                                "Multiline command in history will be supported in next release",
-                            )
+                    # ZSH processing
+                    # Multiline handler
+                    # First line of multiline ends with '\'
+                    if line.strip().endswith("\\") and not multiline_buffer:
+                        multiline_buffer.append(line.strip()[:-1])
+                        continue
+                    # Next line of multiline
+                    if not line.startswith(":") and multiline_buffer:
+                        # If not last line in multiline
+                        if line.strip().endswith("\\"):
+                            multiline_buffer.append(line.strip()[:-1])
+                            continue
+                        # If last line in multiline
+                        multiline_buffer.append(line.strip())
+                    # Check if we have multiline in buffer
+                    if multiline_buffer:
+                        line = " ".join(multiline_buffer)  # noqa: WPS440
+                        multiline_buffer = []
+                    if process_zsh_line(line, filtering):
+                        command_bank.append(process_zsh_line(line, filtering))
+
     except FileNotFoundError:
         print("Try: topalias -f /path/to/home/folder/with/history")
         print(
@@ -221,7 +247,7 @@ def load_command_bank(filtering=False):  # pylint: disable=too-many-branches
     return command_bank
 
 
-def print_history(acronym_length) -> None:  # noqa: WPS210
+def print_history(acronym_length) -> None:
     """Main function for print top commands and suggestions aliases"""
     if DEBUG:
         logging.getLogger().setLevel(logging.DEBUG)
