@@ -53,8 +53,8 @@ def find_history() -> str:  # pylint: disable=inconsistent-return-statements
         logging.debug("History file: %s", history_path)
         return history_path
     print("File {} not found in any of the directories".format(HISTORY_FILE))
-    file_dir = os.path.dirname(os.path.realpath(__file__))
     if DEBUG:
+        file_dir = os.path.dirname(os.path.realpath(__file__))
         if HISTORY_FILE == ".zsh_history":
             data_path = os.path.join(file_dir, r"data/.zsh_history")
         else:
@@ -183,7 +183,7 @@ def process_bash_line(line: str, filtering: bool = False):
             if first_word_in_command not in used_alias:
                 return clear_line
             return None
-        return clear_line if clear_line else None
+        return clear_line or None
     return None
 
 
