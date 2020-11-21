@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Main module. Not for executing, only library. Run project from cli.py"""
+
 import io
 import logging
 import os
@@ -158,13 +159,15 @@ HISTTIMEFORMAT_SECOND = (
 HISTTIMEFORMAT = "".join((HISTTIMEFORMAT_FIRST, HISTTIMEFORMAT_SECOND))
 
 hint_bank = (
+    "Hint (secure): add space ' ' before sensitive command in terminal for skip save current command in history!",
     HISTTIMEFORMAT,
-    "Hint: add space ' ' before sensitive command in terminal for skip save current command in history!",
     "Hint: command 'sudo !!' after you forget add sudo before command in previous command",
     "Hint: command !<command number in history> for repeat command from history",
     "Hint: ignore command in history: echo \"export HISTIGNORE='ls -l:pwd:date:ll:ls:'\" >> ~/.bashrc",
     'Hint: ignore duplicates in history: echo "export HISTCONTROL=ignoreboth" >> ~/.bashrc',
     "Hint: run 'alias' command to print all used aliases",
+    "Hint: example aliases: https://github.com/CSRedRat/topalias/blob/master/topalias/data/.bash_aliases"
+    + " (you can add their)",
 )
 
 
@@ -172,6 +175,13 @@ def print_hint() -> None:
     """Hints for user"""
     print("\nRun after add alias: source ~/.bash_aliases")
     print(random.choice(hint_bank))
+
+
+def print_all_hint() -> None:
+    """Print all hints"""
+    print("\nRun after add alias: source ~/.bash_aliases")
+    for number, hint in enumerate(hint_bank):
+        print(number, hint)
 
 
 def process_bash_line(line: str, filtering: bool = False):

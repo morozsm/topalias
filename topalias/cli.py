@@ -137,6 +137,12 @@ def version(ctx) -> None:
     print_version(ctx, ver=True)
 
 
+@cli.command()
+def hint() -> None:
+    """Print all hints."""
+    core.print_all_hint()
+
+
 @cli.command(name="history")
 @click.pass_context
 def top_history(ctx) -> None:

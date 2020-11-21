@@ -59,9 +59,7 @@ source ~/.bashrc
 
 ![generated bash aliases](https://github.com/CSRedRat/topalias/raw/master/images/bash_screenshot.png "Bash topalias output")
 
-Syntax: `topalias [OPTIONS] COMMAND [ARGUMENTS]`
-
-Without command utility check if you use alias in ~/.bash_aliases - analyze and print usage statistics, offers to find new simple aliases
+Without parameters utility check if you use alias in ~/.bash_aliases - analyze and print usage statistics, then find new simple aliases
 
 ```bash
 python3 -m topalias  # run as python module
@@ -87,12 +85,48 @@ topalias -f /home/user  # or topalias --path /home/user
 
 Also you can use topalias utility in [Bash for Git](https://gitforwindows.org/) on Windows and in [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux).
 
+Add you awesome aliases to [Insights topic](https://github.com/CSRedRat/topalias/issues/29) or [.bash_aliases](https://github.com/CSRedRat/topalias/blob/master/topalias/data/.bash_aliases) example.
+
+### Documentation
+
+```
+Usage: topalias [OPTIONS] COMMAND [ARGS]
+
+Options:
+  -l, --min INTEGER     Print alias acronym not less that value. Default: 1
+  -c, --count INTEGER   Print specified number acronym suggestions. Default:
+                        20
+
+  --filter              Filter used aliases in history. Default: False
+  -z, --zsh             Use zsh shell history file .zsh_history. Default:
+                        False
+
+  -f, --path TEXT       Change custom directory for files: .bash_aliases,
+                        .bash_history, .zsh_history
+
+  --version             Print current program version and check latest on
+                        pypi.org.
+
+  --debug / --no-debug  Enable debug strings in output.
+  -h, --help            Show this message and exit.
+
+Commands:
+  hint     Print all hints.
+  history  Print bash history file.
+  version  Get program current and available version.
+```
+
 ## TODO
 
 -   multiline command in history
+-   check if alias name already used
+-   check if alias already added
 -   add any another acronym algorithm with semantic
 -   more statistics & analytics (used dir, utils, parameters, time)
 -   alias max length parameter
+-   command ignore list flag: top, emacs, vim
+-   often used command "ssh username@servername" suggest add to .ssh/config/
+-   find password and other sensitivity data in history and suggest clean (now print "Hint: add space ' ' before sensitive command in terminal for skip save current command in history!")
 
 Please add you feature requests: [https://github.com/CSRedRat/topalias/issues/new](https://github.com/CSRedRat/topalias/issues/new)
 
