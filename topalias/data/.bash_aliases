@@ -32,8 +32,8 @@ alias dc='docker-compose'
 alias dcl='docker-compose logs -f'
 alias dcr='docker-compose stop && docker-compose up -d'
 alias snd='sudo nano docker-compose.yml'
-alias du='docker-compose up -d'
-alias ds='docker-compose stop'
+alias dcu='docker-compose up -d'
+alias dcs='docker-compose stop'
 
 # kubernetes
 alias k='kubectl'
