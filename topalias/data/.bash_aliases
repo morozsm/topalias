@@ -1,3 +1,5 @@
+# aliases suggestion: https://github.com/CSRedRat/topalias/issues/29
+
 # default
 alias psgrep='ps aux | egrep -i $1' # process search
 alias hh='history | egrep -i' # search in history
