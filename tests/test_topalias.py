@@ -45,7 +45,14 @@ def test_print_hint(capsys):
     """Test hints"""
     aliascore.print_hint()
     captured = capsys.readouterr()
-    assert "Hint: " in captured.out
+    assert "Hint" in captured.out
+
+
+def test_print_all_hint(capsys):
+    """Test all hints"""
+    aliascore.print_all_hint()
+    captured = capsys.readouterr()
+    assert "Hint (secure)" in captured.out
 
 
 def test_command_line_interface():
